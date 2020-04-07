@@ -1,0 +1,42 @@
+<h2 class="display-4 tittle">Pedido</h2>
+<hr>
+<form #form="ngForm" autocomplete="off">
+    <div class="form-group">
+        <label>Item</label>
+        <input type="text" name="ItemID" formControlName="ItemID" class="form-control">
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Price">Preço</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div type="number" class="input-group-text">R$</div>
+                </div>
+                <input name="Price" formControlName="Price" class="form-control">
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Quantity">Quantidade</label>
+            <input name="Quantity" formControlName="Quantity" class="form-control">
+        </div>
+    </div>
+    <div class="form-row">
+    <div class="form-group col-md-6">
+        <label for="Total">Total</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <div type="number" class="input-group-text">R$</div>
+            </div>
+            <input name="Total" formControlName="Total" class="form-control" readonly>
+        </div>
+    </div>
+    <div class="form-group col-md-6">
+        <label for="Data">Data</label>
+        <input name="Data" type="date" formControlName="Data" class="form-control">
+    </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"> Cadastrar</i></button>
+        <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close"> Fechar</i></button>
+    </div>
+</form>
