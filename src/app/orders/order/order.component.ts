@@ -1,5 +1,5 @@
 import { OrderItemsComponent } from './../order-items/order-items.component';
-import { OrderService } from './../../shared/order.service';
+import { OrderService } from '../../shared/providers/order.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import * as moment from 'moment';
@@ -13,7 +13,8 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 export class OrderComponent implements OnInit {
 
   constructor(public service: OrderService,
-              private formBuilder: FormBuilder, private dialog: MatDialog) { }
+              private formBuilder: FormBuilder,
+              private dialog: MatDialog) { }
   public form: FormGroup;
 
   ngOnInit(){
@@ -21,7 +22,6 @@ export class OrderComponent implements OnInit {
   }
 
   private buildForm(){
-    console.log(moment().toISOString());
     this.form = this.formBuilder.group({
       OrderID: [null],
       OrderNo: [null],

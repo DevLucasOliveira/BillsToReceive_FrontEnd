@@ -1,4 +1,5 @@
-import { OrderService } from './shared/order.service';
+import { OrdersModule } from './orders/orders.module';
+import { OrderService } from './shared/providers/order.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -6,7 +7,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { OrdersComponent } from './orders/orders.component';
+import { OrdersComponent } from './orders/orders/orders.component';
 import { OrderComponent } from './orders/order/order.component';
 import { OrderItemsComponent } from './orders/order-items/order-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -14,10 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OrdersComponent,
-    OrderComponent,
-    OrderItemsComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,10 +23,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    OrdersModule
   ],
   entryComponents: [OrderItemsComponent],
-  providers: [OrderService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

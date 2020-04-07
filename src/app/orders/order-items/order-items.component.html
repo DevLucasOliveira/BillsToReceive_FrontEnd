@@ -1,6 +1,6 @@
 <h2 class="display-4 tittle">Pedido</h2>
 <hr>
-<form #form="ngForm" autocomplete="off">
+<form [formGroup]="form" autocomplete="off">
     <div class="form-group">
         <label>Item</label>
         <input type="text" name="ItemID" formControlName="ItemID" class="form-control">
@@ -12,12 +12,12 @@
                 <div class="input-group-prepend">
                     <div type="number" class="input-group-text">R$</div>
                 </div>
-                <input name="Price" formControlName="Price" class="form-control">
+                <input type="number" name="Price" placeholder="0" formControlName="Price" class="form-control">
             </div>
         </div>
         <div class="form-group col-md-6">
             <label for="Quantity">Quantidade</label>
-            <input name="Quantity" formControlName="Quantity" class="form-control">
+            <input type="number" name="Quantity" placeholder="0" formControlName="Quantity" class="form-control">
         </div>
     </div>
     <div class="form-row">

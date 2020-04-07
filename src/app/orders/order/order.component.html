@@ -16,15 +16,6 @@
                 <label for="CustomerID">Nome</label>
                 <input type="text" name="CustomerID" formControlName="CustomerID" class="form-control">
             </div>
-            <div class="form-group">
-                <label for="GTotal">Total</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div type="number" class="input-group-text">R$</div>
-                    </div>
-                    <input name="GTotal" formControlName="GTotal" class="form-control" readonly>
-                </div>
-            </div>
         </div>
     </div>
 
@@ -54,13 +45,34 @@
                 <td> {{ item.Total }}</td>
                 <td>
                     <a class="btn btn-sm btn-info text-white" (click)="manipularItem(i, form.controls.OrderID)"><i
-                        class="fa fa-pencil"></i>
+                            class="fa fa-pencil"></i>
                     </a>
                 </td>
             </tr>
         </tbody>
     </table>
-    <div class="form-group">
-        <button type="submit" class="btn btn-dark"><i class="fa fa-database"> Cadastrar</i></button>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label><br></label>
+                <div>
+                    <div>
+                    <div></div>
+                    </div>    
+                    <button type="submit" class="btn btn-dark"><i class="fa fa-database"> Cadastrar</i></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="GTotal">Total</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div type="number" class="input-group-text">R$</div>
+                    </div>
+                    <input name="GTotal" formControlName="GTotal" class="form-control" readonly>
+                </div>
+            </div>
+        </div>
     </div>
 </form>

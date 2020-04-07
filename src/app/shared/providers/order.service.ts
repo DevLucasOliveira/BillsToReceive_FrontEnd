@@ -1,6 +1,6 @@
-import { OrderItem } from './order-item.model';
 import { Injectable } from '@angular/core';
-import { Order } from './order.model';
+import { OrderItem } from '../models/order-item.model';
+import { Order } from '../models/order.model';
 
 @Injectable({
   providedIn: 'root'
