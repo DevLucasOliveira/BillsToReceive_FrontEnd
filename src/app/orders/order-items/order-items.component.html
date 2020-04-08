@@ -1,9 +1,9 @@
 <h2 class="display-4 tittle">Pedido</h2>
 <hr>
-<form [formGroup]="form" autocomplete="off">
+<form [formGroup]="form" autocomplete="off" (submit)="onSubmit(form)">
     <div class="form-group">
-        <label>Item</label>
-        <input type="text" name="ItemID" formControlName="ItemID" class="form-control">
+        <label for="ItemName">Produto</label>
+        <input type="text" placeholder="Descrição" name="ItemName" formControlName="ItemName" class="form-control">
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -17,26 +17,27 @@
         </div>
         <div class="form-group col-md-6">
             <label for="Quantity">Quantidade</label>
-            <input type="number" name="Quantity" placeholder="0" formControlName="Quantity" class="form-control">
+            <input type="number" min="0" name="Quantity" placeholder="0" formControlName="Quantity" class="form-control"
+            (keyup)="alterarTotal()">
         </div>
     </div>
     <div class="form-row">
-    <div class="form-group col-md-6">
-        <label for="Total">Total</label>
-        <div class="input-group">
-            <div class="input-group-prepend">
-                <div type="number" class="input-group-text">R$</div>
+        <div class="form-group col-md-6">
+            <label for="Total">Total</label>
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <div type="number" class="input-group-text">R$</div>
+                </div>
+                <input name="Total" formControlName="Total" class="form-control" readonly>
             </div>
-            <input name="Total" formControlName="Total" class="form-control" readonly>
         </div>
-    </div>
-    <div class="form-group col-md-6">
-        <label for="Data">Data</label>
-        <input name="Data" type="date" formControlName="Data" class="form-control">
-    </div>
+        <div class="form-group col-md-6">
+            <label for="Date">Data</label>
+            <input name="Date" type="date" formControlName="Date" class="form-control">
+        </div>
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-dark"><i class="fa fa-database"> Cadastrar</i></button>
-        <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close"> Fechar</i></button>
+        <button type="button" class="btn btn-outline-dark ml-1"[mat-dialog-close]><i class="fa fa-close"> Fechar</i></button>
     </div>
 </form>

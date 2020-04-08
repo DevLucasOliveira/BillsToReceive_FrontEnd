@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { OrdersRoutingModule } from './orders-routing.module';
+import {MatDialogModule} from '@angular/material/dialog';
 import { InitialPageComponent } from './initial-page/initial-page.component';
 
 
@@ -14,7 +15,8 @@ import { InitialPageComponent } from './initial-page/initial-page.component';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    OrdersRoutingModule
+    OrdersRoutingModule,
+    MatDialogModule,
   ]
 })
 export class OrdersModule { }
