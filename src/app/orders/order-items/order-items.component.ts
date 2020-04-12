@@ -1,5 +1,5 @@
-import { OrderItem } from './../../shared/models/order-item.model';
-import { OrderService } from './../../shared/providers/order.service';
+import { OrderItem } from '../../shared/models/order';
+import { OrderService } from '../../shared/providers/order.service';
 import { ItemService } from './../../shared/providers/item.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';

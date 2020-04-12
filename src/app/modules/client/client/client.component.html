@@ -1,0 +1,25 @@
+<h3>Clients</h3>
+
+<button class="btn btn-primary">Novo cliente</button>
+
+<p *ngIf="!(clients && clients.length)">Não existem conta aberta</p>
+
+<table class="table" >
+    <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Última compra</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let client of clients">
+            <td> {{client.name }} </td>
+            <td> {{client.phone}} </td>
+            <td>
+                <button>Alterar</button>
+                <button>Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

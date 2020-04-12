@@ -1,6 +1,3 @@
-import { Order } from './shared/models/order.model';
-import { OrderComponent } from './orders/order/order.component';
-import { OrdersComponent } from './orders/orders/orders.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -8,7 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    loadChildren: () => import('./orders/orders.module').then(m => m.OrdersModule)
+    loadChildren: () => import('./modules/container/container.module').then(m => m.ContainerModule)
   }
 ];
 
