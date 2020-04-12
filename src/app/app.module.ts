@@ -1,3 +1,5 @@
+import { OrderService } from './shared/providers/order.service';
+import { ClientService } from './shared/providers/client.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -23,6 +25,7 @@ import { AppComponent } from './app.component';
     MatDialogModule,
     HttpClientModule
   ],
+  providers: [ClientService, OrderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,3 +1,4 @@
+import { ClientService } from './../../../shared/providers/client.service';
 import { Client } from 'src/app/shared/models/client';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 export class ClientComponent implements OnInit {
 
   clients: Client[];
-  constructor() { }
+
+  constructor(private service: ClientService ) { }
 
   ngOnInit() {
+    this.service.getClient()
+    .subscribe(API => this.clients = API),
+    error => console.error(error);
   }
+
+
 
 }
