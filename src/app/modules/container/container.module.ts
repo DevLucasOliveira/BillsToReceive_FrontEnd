@@ -3,13 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { InitialPageComponent } from './initial-page/initial-page.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { ContainerRoutingModule } from './container-routing.module';
 
 
 
 @NgModule({
-  declarations: [FooterComponent, HeaderComponent, InitialPageComponent, NavbarComponent],
+  declarations: [FooterComponent, HeaderComponent, InitialPageComponent],
   imports: [
     CommonModule,
     ContainerRoutingModule

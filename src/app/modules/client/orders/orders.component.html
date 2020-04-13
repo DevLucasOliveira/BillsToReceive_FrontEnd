@@ -1,10 +1,10 @@
 <h3>Clients</h3>
-
-<button class="btn btn-primary">Novo cliente</button>
+<div>
+<button [routerLink]= "['/order']" class="btn btn-primary">Novo cliente</button>
 
 <p *ngIf="!(clients && clients.length)">Não existem conta aberta</p>
 
-<table class="table" >
+<table class="table"  *ngIf="(clients && clients.length)">
     <thead>
         <tr>
             <th>Cliente</th>
@@ -23,3 +23,4 @@
         </tr>
     </tbody>
 </table>
+</div>

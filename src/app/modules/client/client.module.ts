@@ -1,15 +1,17 @@
-import { ClientRoutingModule } from './client-routing.module';
+import { OrderComponent } from './order/order.component';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClientComponent } from './client/client.component';
+import { OrderItemComponent } from './order-item/order-item.component';
+import { OrdersComponent } from './orders/orders.component';
+import { ClientRoutingModule } from './client-routing.module';
 
 
 
 @NgModule({
-  declarations: [ClientComponent],
+  declarations: [OrderComponent, OrderItemComponent, OrdersComponent],
   imports: [
     CommonModule,
-    ClientRoutingModule
+    ClientRoutingModule,
   ]
 })
 export class ClientModule { }
