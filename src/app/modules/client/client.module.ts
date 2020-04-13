@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { OrderItemComponent } from './order-item/order-item.component';
 import { OrdersComponent } from './orders/orders.component';
 import { ClientRoutingModule } from './client-routing.module';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -12,6 +13,8 @@ import { ClientRoutingModule } from './client-routing.module';
   imports: [
     CommonModule,
     ClientRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
   ]
 })
 export class ClientModule { }

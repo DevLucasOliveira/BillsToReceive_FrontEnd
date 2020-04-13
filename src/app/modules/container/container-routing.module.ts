@@ -13,7 +13,7 @@ const routes: Routes = [
                 path: 'client',
                 loadChildren: () => import('../client/client.module').then(m => m.ClientModule)
             },
-            { 
+            {
                 path: 'order',
                 component: OrderComponent
             },
@@ -28,6 +28,10 @@ const routes: Routes = [
                 path: '**',
                 redirectTo: 'orders'
             },
+            {
+                path: 'edit/ id',
+                component: OrderComponent
+            }
         ]
     }
 ];
