@@ -18,7 +18,7 @@
             <td> {{client.phone}} </td>
             <td>
                 <button class="btn btn-success" [routerLink]='["/client-edit/" + client.idClient]' >Alterar</button>
-                <button class="btn btn-danger">Excluir</button>
+                <button class="btn btn-danger"  (click)="delete(client)">Excluir</button>
             </td>
         </tr>
     </tbody>

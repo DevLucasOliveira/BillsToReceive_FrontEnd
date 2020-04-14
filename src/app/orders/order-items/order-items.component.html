@@ -3,8 +3,7 @@
 <form [formGroup]="form" autocomplete="off" (submit)="onSubmit()">
     <div class="form-group">
         <label for="ItemName">Produto</label>
-        <input type="text" placeholder="Descrição" name="ItemName" formControlName="ItemName" class="form-control"
-            [class.is-invalid]="form.controls.ItemName.invalid && form.controls.ItemName.dirty">
+        <input type="text" placeholder="Descrição" name="ItemName" formControlName="ItemName" class="form-control">
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
@@ -14,13 +13,13 @@
                     <div type="number" class="input-group-text">R$</div>
                 </div>
                 <input type="number" name="Price" placeholder="0" formControlName="Price" class="form-control"
-                    [class.is-invalid]="form.controls.Price.invalid && form.controls.Price.dirty" (keyup)="alterarTotal()">
+                    (keyup)="alterarTotal()">
             </div>
         </div>
         <div class="form-group col-md-6">
             <label for="Quantity">Quantidade</label>
             <input type="number" min="0" name="Quantity" placeholder="0" formControlName="Quantity" class="form-control"
-                (keyup)="alterarTotal()" [class.is-invalid]="form.controls.Quantity.invalid && form.controls.Quantity.dirty" >
+                (keyup)="alterarTotal()">
         </div>
     </div>
     <div class="form-row">
@@ -40,7 +39,7 @@
     </div>
     <div class="form-group">
         <button type="submit" class="btn btn-dark"><i class="fa fa-database"> Cadastrar</i></button>
-        <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close">
+        <button type="button" class="btn btn-outline-dark ml-1"><i class="fa fa-close">
                 Fechar</i></button>
     </div>
 </form>

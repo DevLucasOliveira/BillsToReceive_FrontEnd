@@ -1,9 +1,12 @@
+import { OrderService } from './../../../shared/providers/order.service';
+import { ModalItemComponent } from './../../../shared/components/modal-item/modal-item.component';
 import { ClientService } from './../../../shared/providers/client.service';
 import { Client } from 'src/app/shared/models/client';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { Order } from 'src/app/shared/models/order';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-order',
@@ -12,14 +15,18 @@ import { Order } from 'src/app/shared/models/order';
 })
 export class OrderComponent implements OnInit {
 
+  form: FormGroup;
+  order: Order;
+  orders: Order[];
+  client: Client;
+
   constructor(private fb: FormBuilder,
               private router: Router,
               private service: ClientService,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private modalService: NgbModal,
+              private orderService: OrderService) { }
 
-  form: FormGroup;
-  orders: Order[];
-  client: Client;
 
   ngOnInit() {
     this.buildForm();
@@ -39,6 +46,12 @@ export class OrderComponent implements OnInit {
       });
   }
 
+  buildForm() {
+    this.form = this.fb.group({
+      name: '',
+      phone: ''
+    });
+  }
 
   loadForm(client: Client) {
     this.form.patchValue({
@@ -47,17 +60,7 @@ export class OrderComponent implements OnInit {
     });
   }
 
-
-  buildForm() {
-    this.form = this.fb.group({
-      name: '',
-      phone: ''
-    });
-  }
-
-
   save() {
-
     if (this.client) {
       this.fillClient();
       this.service.updateClient(this.client).subscribe(
@@ -84,8 +87,9 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/client']);
   }
 
-  fillClient(){
-    if (this.client === undefined){
+
+  fillClient() {
+    if (this.client === undefined) {
       this.client = new Client();
     }
     this.client.name = this.form.controls.name.value;
@@ -93,4 +97,36 @@ export class OrderComponent implements OnInit {
   }
 
 
+  loadPage() {
+    this.orderService.getOrder().subscribe(
+      response => {
+        this.orders = response;
+      },
+      error => {
+        console.error(error);
+      });
+  }
+
+
+  addItem() {
+    const modalRef = this.modalService.open(ModalItemComponent);
+    modalRef.result.then(
+      result => {
+        if (result) {
+          this.orderService.createOrder(this.order).subscribe(
+            result => {
+              this.loadPage();
+            });
+        }
+      });
+
+  }
+
+
+
 }
+
+
+
+
+

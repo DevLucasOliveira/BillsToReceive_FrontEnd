@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h2 class="display-4 tittle">Pedido</h2>
+    <hr>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" autocomplete="off" (ngSubmit)="save()">
+        <div class="form-group">
+            <label for="productName">Produto</label>
+            <input type="text" placeholder="Descrição" name="productName" formControlName="productName"
+                class="form-control">
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="price">Preço</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div type="number" class="input-group-text">R$</div>
+                    </div>
+                    <input type="number" name="price" placeholder="0" formControlName="price" class="form-control">
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="quantity">Quantidade</label>
+                <input type="number" min="0" name="quantity" placeholder="0" formControlName="quantity"
+                    class="form-control">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="total">Total</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div type="number" class="input-group-text">R$</div>
+                    </div>
+                    <input name="total" formControlName="total" class="form-control" readonly>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="date">Data</label>
+                <input name="date" type="date" formControlName="date" class="form-control">
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-database"> Cadastrar</i></button>
+        <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()"><i class="fa fa-close">
+                Fechar</i></button>
+    </div>
+
+</div>

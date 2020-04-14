@@ -9,11 +9,14 @@ import { ClientService } from './shared/providers/client.service';
 import { OrderService } from './shared/providers/order.service';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ModalConfirmationComponent } from './shared/components/modal-confirmation/modal-confirmation.component';
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ModalConfirmationComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,8 @@ import { AppComponent } from './app.component';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule
   ],
   providers: [ClientService, OrderService],
   bootstrap: [AppComponent]
