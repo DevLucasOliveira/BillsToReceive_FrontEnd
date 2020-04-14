@@ -25,13 +25,13 @@ const routes: Routes = [
                 path: 'orders', component: OrdersComponent
             },
             {
+                path: 'client-edit/:id',
+                component: OrderComponent
+            },
+            {
                 path: '**',
                 redirectTo: 'orders'
             },
-            {
-                path: 'edit/ id',
-                component: OrderComponent
-            }
         ]
     }
 ];
