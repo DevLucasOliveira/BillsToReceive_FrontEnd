@@ -39,6 +39,9 @@ export class OrderComponent implements OnInit {
           response => {
             this.loadForm(response);
             this.client = response;
+            if(params.id){
+              this.loadPage();
+            }
           },
           error => {
             console.error(error);
@@ -108,8 +111,11 @@ export class OrderComponent implements OnInit {
   }
 
 
-  addItem() {
+  addItem(idClient) {
+    const data = {idClient};
     const modalRef = this.modalService.open(ModalItemComponent);
+
+
     modalRef.result.then(
       result => {
         if (result) {
@@ -122,8 +128,18 @@ export class OrderComponent implements OnInit {
 
   }
 
+  delete(order: Order){
+    this.orderService.deleteOrder(order.idOrder).subscribe(
+      response => {
+        this.loadPage();
+      },
+      error => {
+        console.error(error);
+      });
+  }
 
 
+  
 }
 
 

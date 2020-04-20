@@ -32,5 +32,9 @@ export class OrderService {
     return this.http.get<Order>(this.API_URL + '/Orders/' + orderId);
   }
 
+  deleteOrder(orderId: number): Observable<Order>{
+    return this.http.delete<Order>(this.API_URL + '/Orders/' + orderId);
+  }
+
 
 }

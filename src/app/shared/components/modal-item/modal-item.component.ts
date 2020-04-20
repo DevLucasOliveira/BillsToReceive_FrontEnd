@@ -1,6 +1,6 @@
 import { OrderService } from './../../providers/order.service';
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbActiveModal, NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Client } from '../../models/client';
@@ -23,7 +23,7 @@ export class ModalItemComponent implements OnInit {
               public activeModal: NgbActiveModal,
               private activatedRoute: ActivatedRoute,
               private orderService: OrderService,
-              private router: Router) { }
+              ) { }
 
 
   ngOnInit() {
@@ -46,7 +46,7 @@ export class ModalItemComponent implements OnInit {
 
   buildForm(){
     this.form = this.formBuilder.group({
-      idClient: [],
+      idClient: 1036,
       productName: ['', Validators.required],
       price: [null, Validators.required],
       quantity: [1, Validators.compose([Validators.required, Validators.min(0)])],
@@ -70,18 +70,13 @@ export class ModalItemComponent implements OnInit {
       this.fillOrder();
       this.orderService.createOrder(this.order).subscribe(
         response => {
-          this.onSaveSucess();
+          this.closeModal();
         },
         error => {
           console.error(error);
         });
 
   }
-
-  onSaveSucess() {
-    this.router.navigate(['/order']);
-  }
-
 
   fillOrder() {
     if (this.order === undefined) {
@@ -95,13 +90,18 @@ export class ModalItemComponent implements OnInit {
     this.order.total = this.form.controls.total.value;
   }
 
-
   closeModal() {
     this.activeModal.close();
   }
 
+  updateTotal() {
+    if (this.form.controls.quantity.value < 1) {
+      this.form.controls.quantity.setValue(null);
+    }
+    this.form.controls.total.setValue(parseFloat((this.form.controls.quantity.value * this.form.controls.price.value).toFixed(2)));
+  }
 
-  
+
 
 
 
