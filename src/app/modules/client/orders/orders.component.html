@@ -1,6 +1,5 @@
-<h3>Clients</h3>
 <div>
-<button [routerLink]= "['/order']" class="btn btn-primary">Novo cliente</button>
+<button class="btn btn-primary" (click)="addItem()">Novo cliente</button>
 
 <p *ngIf="!(clients && clients.length)">Não existem conta aberta</p>
 

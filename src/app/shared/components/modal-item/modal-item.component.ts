@@ -23,7 +23,7 @@ export class ModalItemComponent implements OnInit {
               public activeModal: NgbActiveModal,
               private activatedRoute: ActivatedRoute,
               private orderService: OrderService,
-              ) { }
+            ) { }
 
 
   ngOnInit() {
@@ -44,7 +44,7 @@ export class ModalItemComponent implements OnInit {
       });
   }
 
-  buildForm(){
+  buildForm() {
     this.form = this.formBuilder.group({
       idClient: 1036,
       productName: ['', Validators.required],
@@ -67,27 +67,27 @@ export class ModalItemComponent implements OnInit {
   }
 
   save() {
-      this.fillOrder();
-      this.orderService.createOrder(this.order).subscribe(
-        response => {
-          this.closeModal();
-        },
-        error => {
-          console.error(error);
-        });
-
+    this.fillOrder();
+    this.orderService.createOrder(this.order).subscribe(
+      response => {
+        this.closeModal();
+      },
+      error => {
+        console.error(error);
+      });
   }
 
   fillOrder() {
+    let idClient = this.form.controls.idClient.value;
+    let productName = this.form.controls.productName.value;
+    let price = this.form.controls.price.value;
+    let quantity = this.form.controls.quantity.value;
+    let date = this.form.controls.date.value;
+    let total = this.form.controls.total.value;
     if (this.order === undefined) {
-      this.order = new Order();
+      this.order = new Order(idClient, productName, price, quantity, date, total);
     }
-    this.order.idClient = this.form.controls.idClient.value;
-    this.order.productName = this.form.controls.productName.value;
-    this.order.price = this.form.controls.price.value;
-    this.order.quantity = this.form.controls.quantity.value;
-    this.order.date = this.form.controls.date.value;
-    this.order.total = this.form.controls.total.value;
+    this.order = new Order(idClient, productName, price, quantity, date, total);
   }
 
   closeModal() {
@@ -100,9 +100,6 @@ export class ModalItemComponent implements OnInit {
     }
     this.form.controls.total.setValue(parseFloat((this.form.controls.quantity.value * this.form.controls.price.value).toFixed(2)));
   }
-
-
-
 
 
 

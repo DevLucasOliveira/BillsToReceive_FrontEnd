@@ -2,7 +2,6 @@ import { OrderComponent } from './../client/order/order.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { InitialPageComponent } from './initial-page/initial-page.component';
-import { OrderItemComponent } from '../client/order-item/order-item.component';
 import { OrdersComponent } from '../client/orders/orders.component';
 
 const routes: Routes = [
@@ -16,10 +15,6 @@ const routes: Routes = [
             {
                 path: 'order',
                 component: OrderComponent
-            },
-            {
-                path: 'order-item',
-                component: OrderItemComponent
             },
             {
                 path: 'orders', component: OrdersComponent
