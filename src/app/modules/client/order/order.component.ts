@@ -32,7 +32,7 @@ export class OrderComponent implements OnInit {
     this.buildForm();
     this.getClient();
   }
-  
+
   getClient() {
     this.activatedRoute.params.subscribe(
       params => {
@@ -52,6 +52,7 @@ export class OrderComponent implements OnInit {
           });
       });
   }
+
   buildForm() {
     this.form = this.fb.group({
       name: '',
@@ -77,31 +78,19 @@ export class OrderComponent implements OnInit {
           console.error(error);
         });
     }
-    else {
-      this.fillClient();
-      this.clientService.createClient(this.client).subscribe(
-        response => {
-          this.onSaveSucess();
-        },
-        error => {
-          console.error(error);
-        });
-    }
+  }
+
+  fillClient() {
+    let value = this.form.value;
+
+    this.client.name = value.name;
+    this.client.phone = value.phone;
   }
 
   onSaveSucess() {
     this.router.navigate(['/client']);
   }
 
-  fillClient() {
-    let name = this.form.controls.name.value;
-    let phone = this.form.controls.phone.value;
-
-    if (this.client === undefined) {
-      this.client = new Client(name, phone);
-    }
-    this.client = new Client(name, phone);
-  }
 
   loadPage() {
     this.orderService.getOrderByClient(this.client.idClient).subscribe(
@@ -122,6 +111,17 @@ export class OrderComponent implements OnInit {
         this.loadPage();
       });
   }
+
+  updateItem(order: Order) {
+    const modalRef = this.modalService.open(ModalItemComponent);
+    modalRef.componentInstance.order = order;
+    modalRef.componentInstance.client = this.client;
+    modalRef.result.then(
+      result => {
+        this.loadPage();
+      });
+  }
+
 
 
   delete(order: Order) {
