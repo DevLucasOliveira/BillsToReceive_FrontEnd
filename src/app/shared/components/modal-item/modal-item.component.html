@@ -8,6 +8,9 @@
             <label for="productName">Produto</label>
             <input type="text" placeholder="Descrição" name="productName" formControlName="productName"
                 class="form-control">
+            <span class="invalid"
+                *ngIf="form.controls.productName.invalid && form.controls.productName.dirty">Preenchimento
+                obrigatório</span>
         </div>
         <div class="form-row">
             <div class="form-group col-md-6">
@@ -18,12 +21,17 @@
                     </div>
                     <input type="number" name="price" placeholder="0" formControlName="price" class="form-control"
                         (keyup)="updateTotal()">
+                    <span class="invalid" *ngIf="form.controls.price.invalid && form.controls.price.dirty">Preenchimento
+                        obrigatório</span>
                 </div>
             </div>
             <div class="form-group col-md-6">
                 <label for="quantity">Quantidade</label>
                 <input type="number" min="0" name="quantity" placeholder="0" formControlName="quantity"
                     class="form-control" (keyup)="updateTotal()">
+                <span class="invalid"
+                    *ngIf="form.controls.quantity.invalid && form.controls.quantity.dirty">Preenchimento
+                    obrigatório</span>
             </div>
         </div>
         <div class="form-row">
@@ -45,7 +53,9 @@
 </div>
 <div class="modal-footer">
     <div class="form-group">
-        <button type="submit" class="btn btn-dark" (click)="save()"><i class="fa fa-database"> Cadastrar</i></button>
+        <button type="submit" class="btn btn-dark" (click)="save()"
+            [disabled]="!form.controls.productName.valid || !form.controls.price.valid || !form.controls.quantity.valid"><i
+                class="fa fa-database"> Cadastrar</i></button>
         <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()"><i class="fa fa-close">
                 Fechar</i></button>
     </div>

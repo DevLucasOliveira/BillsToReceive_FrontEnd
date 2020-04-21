@@ -55,7 +55,6 @@ export class ModalClientComponent implements OnInit {
 
   saveWithRequests() {
     this.fillClient();
-    console.log(this.client.idClient);
     this.clientService.createClient(this.client).subscribe(
       response => {
         console.log(response);

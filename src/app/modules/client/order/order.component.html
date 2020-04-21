@@ -39,14 +39,14 @@
                     Conta vazia
                 </td>
             </tr>
-            <tr *ngFor="let item of orders; let i = index;">
-                <td> {{ item.productName }} </td>
-                <td> {{ item.price }}</td>
-                <td> {{ item.quantity }}</td>
-                <td> {{ item.date }} </td>
-                <td> {{ item.total }}</td>
+            <tr *ngFor="let order of orders">
+                <td> {{ order.productName }} </td>
+                <td> {{ order.price }}</td>
+                <td> {{ order.quantity }}</td>
+                <td> {{ order.date }} </td>
+                <td> {{ order.total }}</td>
                 <td>
-                    <a class="btn btn-sm btn-info text-white" (click)="addItem()"><i class="fa fa-pencil"></i>
+                    <a class="btn btn-sm btn-info text-white" (click)="addItem()" ><i class="fa fa-pencil"></i>
                     </a>
                     <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(order)"><i class="fa fa-trash"></i>
                     </a>
@@ -74,7 +74,7 @@
                     <div class="input-group-prepend">
                         <div type="number" class="input-group-text">R$</div>
                     </div>
-                    <label *ngFor="let item of orders;"> {{ item.total }} </label>
+                    <label *ngFor="let order of orders;"> {{ order.total }} </label>
                 </div>
             </div>
         </div>

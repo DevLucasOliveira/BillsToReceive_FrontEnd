@@ -15,18 +15,22 @@ export class ModalItemComponent implements OnInit {
 
   form: FormGroup;
   orders: Order[];
-  order: Order;
   closeResult: string;
   @Input() client: Client;
+  @Input() order: Order;
 
   constructor(private formBuilder: FormBuilder,
-              public activeModal: NgbActiveModal,
+              public  activeModal: NgbActiveModal,
               private activatedRoute: ActivatedRoute,
               private orderService: OrderService,
-            ) { }
+  ) { }
 
   ngOnInit() {
     this.buildForm();
+    this.getOrder();
+  }
+
+  getOrder() {
     this.activatedRoute.params.subscribe(
       params => {
         if (params.id === undefined) {
@@ -56,7 +60,6 @@ export class ModalItemComponent implements OnInit {
 
   loadForm(order: Order) {
     this.form.patchValue({
-      idClient: order.idClient,
       productName: order.productName,
       price: order.price,
       quantity: order.quantity,

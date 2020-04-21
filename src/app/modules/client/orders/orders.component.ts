@@ -20,12 +20,9 @@ export class OrdersComponent implements OnInit {
   clients: Client[];
 
   constructor(private fb: FormBuilder,
-    private router: Router,
-    private service: ClientService,
-    private activatedRoute: ActivatedRoute,
-    private modalService: NgbModal,
-    private clientService: ClientService,
-    private orderService: OrderService) { }
+              private modalService: NgbModal,
+              private clientService: ClientService,
+              private orderService: OrderService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -47,7 +44,7 @@ export class OrdersComponent implements OnInit {
   }
 
   delete(client: Client) {
-    this.service.deleteClient(client.idClient).subscribe(
+    this.clientService.deleteClient(client.idClient).subscribe(
       response => {
         this.loadPage();
       },
@@ -58,7 +55,7 @@ export class OrdersComponent implements OnInit {
   }
 
   loadPage() {
-    this.service.getClient().subscribe(
+    this.clientService.getClient().subscribe(
       response => {
         this.clients = response;
       },
@@ -75,7 +72,7 @@ export class OrdersComponent implements OnInit {
         if (result) {
           this.orderService.deleteOrdersOfClient(client.idClient).subscribe(
             result => {
-              this.service.deleteClient(client.idClient).subscribe(
+              this.clientService.deleteClient(client.idClient).subscribe(
                 result => {
                   this.loadPage();
                 }
