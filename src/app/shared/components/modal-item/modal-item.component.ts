@@ -34,12 +34,13 @@ export class ModalItemComponent implements OnInit {
     this.activatedRoute.params.subscribe(
       params => {
         if (params.id === undefined) {
+          this.loadForm();
           return;
         }
         this.orderService.getOneOrder(params.id).subscribe(
           response => {
-            this.loadForm(response);
             this.order = response;
+            this.loadForm();
           },
           error => {
             console.error(error);
@@ -58,37 +59,56 @@ export class ModalItemComponent implements OnInit {
     });
   }
 
-  loadForm(order: Order) {
+  loadForm() {
     this.form.patchValue({
-      productName: order.productName,
-      price: order.price,
-      quantity: order.quantity,
-      date: order.date,
-      total: order.total
+      productName: this.order.productName,
+      price: this.order.price,
+      quantity: this.order.quantity,
+      date: this.order.date,
+      total: this.order.total
     });
   }
 
   save() {
-    this.fillOrder();
-    this.orderService.createOrder(this.order).subscribe(
-      response => {
-        this.closeModal();
-      },
-      error => {
-        console.error(error);
-      });
+    if (this.order === undefined){
+      this.fillOrder();
+      this.orderService.createOrder(this.order).subscribe(
+        response => {
+          this.closeModal();
+        },
+        error => {
+          console.error(error);
+        });
+    }else{
+      this.fillOrder();
+      this.orderService.updateOrder(this.order).subscribe(
+        response => {
+          this.closeModal();
+        },
+        error => {
+          console.error(error);
+        });
+    }
   }
 
   fillOrder() {
     let value = this.form.value;
 
-    this.order = new Order(
-      this.client.idClient,
-      value.productName,
-      value.price,
-      value.quantity,
-      value.date,
-      value.total);
+    if (this.order === undefined){
+      this.order = new Order(
+        this.client.idClient,
+        value.productName,
+        value.price,
+        value.quantity,
+        value.date,
+        value.total);
+    }
+    this.order.idClient = this.client.idClient;
+    this.order.productName = value.productName;
+    this.order.price = value.price;
+    this.order.quantity = value.quantity;
+    this.order.date = value.date;
+    this.order.total = value.total;
   }
 
   closeModal() {

@@ -24,6 +24,10 @@ export class OrderService {
     return this.http.post<Order>(this.API_URL + '/Orders', order);
   }
 
+  updateOrder(order: Order): Observable<Order>{
+    return this.http.put<Order>(this.API_URL + '/Orders', order);
+  }
+
   getOrder(): Observable<Order[]>{
     return this.http.get<Order[]>(this.API_URL + '/Orders');
   }
