@@ -1,3 +1,4 @@
+import { SharedRoutingModule } from './shared-routing.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +13,8 @@ import { ModalClientComponent } from './components/modal-client/modal-client.com
     CommonModule,
     NgbModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedRoutingModule
   ]
 })
 export class SharedModule { }

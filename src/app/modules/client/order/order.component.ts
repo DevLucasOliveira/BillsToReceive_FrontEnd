@@ -22,10 +22,10 @@ export class OrderComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private router: Router,
-              private service: ClientService,
+              private orderService: OrderService,
               private activatedRoute: ActivatedRoute,
               private modalService: NgbModal,
-              private orderService: OrderService) { }
+              private clientService: ClientService) { }
 
 
   ngOnInit() {
@@ -35,11 +35,11 @@ export class OrderComponent implements OnInit {
         if (params.id === undefined) {
           return;
         }
-        this.service.getOneClient(params.id).subscribe(
+        this.clientService.getOneClient(params.id).subscribe(
           response => {
             this.loadForm(response);
             this.client = response;
-            if(params.id){
+            if (params.id){
               this.loadPage();
             }
           },
@@ -66,7 +66,7 @@ export class OrderComponent implements OnInit {
   save() {
     if (this.client) {
       this.fillClient();
-      this.service.updateClient(this.client).subscribe(
+      this.clientService.updateClient(this.client).subscribe(
         response => {
           this.onSaveSucess();
         },
@@ -76,7 +76,7 @@ export class OrderComponent implements OnInit {
     }
     else {
       this.fillClient();
-      this.service.createClient(this.client).subscribe(
+      this.clientService.createClient(this.client).subscribe(
         response => {
           this.onSaveSucess();
         },
@@ -90,15 +90,15 @@ export class OrderComponent implements OnInit {
     this.router.navigate(['/client']);
   }
 
-
   fillClient() {
-    if (this.client === undefined) {
-      this.client = new Client();
-    }
-    this.client.name = this.form.controls.name.value;
-    this.client.phone = this.form.controls.phone.value;
-  }
+    let name = this.form.controls.name.value;
+    let phone = this.form.controls.phone.value;
 
+    if (this.client === undefined) {
+      this.client = new Client(name, phone);
+    }
+    this.client = new Client(name, phone);
+  }
 
   loadPage() {
     this.orderService.getOrder().subscribe(
@@ -112,9 +112,7 @@ export class OrderComponent implements OnInit {
 
 
   addItem(idClient) {
-    const data = {idClient};
     const modalRef = this.modalService.open(ModalItemComponent);
-
 
     modalRef.result.then(
       result => {
@@ -125,7 +123,6 @@ export class OrderComponent implements OnInit {
             });
         }
       });
-
   }
 
   delete(order: Order){
@@ -139,7 +136,6 @@ export class OrderComponent implements OnInit {
   }
 
 
-  
 }
 
 

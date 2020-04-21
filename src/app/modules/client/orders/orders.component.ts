@@ -1,10 +1,12 @@
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { OrderService } from './../../../shared/providers/order.service';
 import { ModalConfirmationComponent } from './../../../shared/components/modal-confirmation/modal-confirmation.component';
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/shared/models/client';
 import { ClientService } from 'src/app/shared/providers/client.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ModalClientComponent } from 'src/app/shared/components/modal-client/modal-client.component';
 
 @Component({
   selector: 'app-orders',
@@ -13,15 +15,35 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class OrdersComponent implements OnInit {
 
+  form: FormGroup;
+  client: Client;
   clients: Client[];
 
-  constructor(private service: ClientService,
+  constructor(private fb: FormBuilder,
+              private router: Router,
+              private service: ClientService,
+              private activatedRoute: ActivatedRoute,
               private modalService: NgbModal,
-              private orderService: OrderService
-              ) { }
+              private clientService: ClientService,
+              private orderService: OrderService) { }
 
   ngOnInit() {
+    this.buildForm();
     this.loadPage();
+  }
+
+  loadForm(client: Client) {
+    this.form.patchValue({
+      name: client.name,
+      phone: client.phone
+    });
+  }
+
+  buildForm() {
+    this.form = this.fb.group({
+      name: '',
+      phone: ''
+    });
   }
 
   delete(client: Client) {
@@ -61,6 +83,19 @@ export class OrdersComponent implements OnInit {
           });
       }
     });
+  }
+
+  addItem() {
+    const modalRef = this.modalService.open(ModalClientComponent);
+    modalRef.result.then(
+      result => {
+        if (result) {
+          this.clientService.createClient(this.client).subscribe(
+            result => {
+              this.loadPage();
+            });
+        }
+      });
   }
 
 }

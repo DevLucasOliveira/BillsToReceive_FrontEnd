@@ -3,7 +3,7 @@
     <hr>
 </div>
 <div class="modal-body">
-    <form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
+    <form [formGroup]="form" autocomplete="off" *ngIf="form">
         <div class="row">
             <div class="form-group">
                 <label for="phone">Contato</label>
@@ -18,14 +18,25 @@
             <div class="form-group">
                 <label for="name">Nome</label>
                 <input type="text" name="name" placeholder="Digite o nome" formControlName="name" class="form-control">
+                <span class="invalid" *ngIf="form.controls.name.invalid && form.controls.name.dirty">Preenchimento
+                    obrigatório</span>
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
     <div class="form-group">
-        <button type="submit" class="btn btn-dark" (click)="save()"><i class="fa fa-database"> Cadastrar</i></button>
-        <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()"><i class="fa fa-close">
-                Fechar</i></button>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-dark" (click)="savewithRequests()" [disabled]="!form.controls.name.valid" ><i
+                        class="fa fa-database">Adicionar items</i></button>
+            </div>
+            <div class="col-md-8">
+                <button type="submit" class="btn btn-dark" (click)="save()" [disabled]="!form.controls.name.valid"><i
+                        class="fa fa-database">Cadastrar</i></button>
+                <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()"><i class="fa fa-close">
+                        Fechar</i></button>
+            </div>
+        </div>
     </div>
 </div>
