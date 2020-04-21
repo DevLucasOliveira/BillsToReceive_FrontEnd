@@ -30,6 +30,10 @@ export class OrderComponent implements OnInit {
 
   ngOnInit() {
     this.buildForm();
+    this.getClient();
+  }
+  
+  getClient() {
     this.activatedRoute.params.subscribe(
       params => {
         if (params.id === undefined) {
@@ -39,7 +43,7 @@ export class OrderComponent implements OnInit {
           response => {
             this.loadForm(response);
             this.client = response;
-            if (params.id){
+            if (params.id) {
               this.loadPage();
             }
           },
@@ -48,7 +52,6 @@ export class OrderComponent implements OnInit {
           });
       });
   }
-
   buildForm() {
     this.form = this.fb.group({
       name: '',
@@ -101,7 +104,7 @@ export class OrderComponent implements OnInit {
   }
 
   loadPage() {
-    this.orderService.getOrder().subscribe(
+    this.orderService.getOrderByClient(this.client.idClient).subscribe(
       response => {
         this.orders = response;
       },
@@ -111,21 +114,17 @@ export class OrderComponent implements OnInit {
   }
 
 
-  addItem(idClient) {
+  addItem() {
     const modalRef = this.modalService.open(ModalItemComponent);
-
+    modalRef.componentInstance.client = this.client;
     modalRef.result.then(
       result => {
-        if (result) {
-          this.orderService.createOrder(this.order).subscribe(
-            result => {
-              this.loadPage();
-            });
-        }
+        this.loadPage();
       });
   }
 
-  delete(order: Order){
+
+  delete(order: Order) {
     this.orderService.deleteOrder(order.idOrder).subscribe(
       response => {
         this.loadPage();

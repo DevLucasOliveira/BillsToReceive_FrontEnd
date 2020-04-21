@@ -18,11 +18,11 @@ export class ModalClientComponent implements OnInit {
   closeResult: string;
 
   constructor(private formBuilder: FormBuilder,
-              public activeModal: NgbActiveModal,
-              private activatedRoute: ActivatedRoute,
-              private clientService: ClientService,
-              private router: Router
-            ) { }
+    public activeModal: NgbActiveModal,
+    private activatedRoute: ActivatedRoute,
+    private clientService: ClientService,
+    private router: Router
+  ) { }
 
   ngOnInit() {
     this.buildForm();
@@ -53,7 +53,7 @@ export class ModalClientComponent implements OnInit {
       });
   }
 
-  savewithRequests(){
+  saveWithRequests() {
     this.fillClient();
     console.log(this.client.idClient);
     this.clientService.createClient(this.client).subscribe(
@@ -67,18 +67,16 @@ export class ModalClientComponent implements OnInit {
       });
   }
 
-  onsaveSucess(id: number){
+  onsaveSucess(id: number) {
     this.router.navigate(['/client-edit/' + id]);
   }
 
   fillClient() {
-    let name = this.form.controls.name.value;
-    let phone = this.form.controls.phone.value;
+    let value = this.form.value;
 
-    if (this.client === undefined) {
-      this.client = new Client(name, phone);
-    }
-    this.client = new Client(name, phone);
+    this.client = new Client(
+      value.name,
+      value.phone);
   }
 
   closeModal() {

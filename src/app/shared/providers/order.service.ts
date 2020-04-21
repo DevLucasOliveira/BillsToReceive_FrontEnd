@@ -36,5 +36,8 @@ export class OrderService {
     return this.http.delete<Order>(this.API_URL + '/Orders/' + orderId);
   }
 
+  getOrderByClient(clientId: number): Observable<Order[]>{
+    return this.http.get<Order[]>(this.API_URL + '/Orders/clients/' + clientId);
+  }
 
 }

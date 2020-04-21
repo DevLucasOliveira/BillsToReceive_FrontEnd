@@ -20,12 +20,12 @@ export class OrdersComponent implements OnInit {
   clients: Client[];
 
   constructor(private fb: FormBuilder,
-              private router: Router,
-              private service: ClientService,
-              private activatedRoute: ActivatedRoute,
-              private modalService: NgbModal,
-              private clientService: ClientService,
-              private orderService: OrderService) { }
+    private router: Router,
+    private service: ClientService,
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
+    private clientService: ClientService,
+    private orderService: OrderService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -72,29 +72,24 @@ export class OrdersComponent implements OnInit {
     modalRef.componentInstance.message = 'Deseja realmente excluir? Esse cliente possui pedidos em aberto';
     modalRef.result.then(
       result => {
-      if (result) {
-        this.orderService.deleteOrdersOfClient(client.idClient).subscribe(
-          result => {
+        if (result) {
+          this.orderService.deleteOrdersOfClient(client.idClient).subscribe(
+            result => {
               this.service.deleteClient(client.idClient).subscribe(
                 result => {
                   this.loadPage();
                 }
               );
-          });
-      }
-    });
+            });
+        }
+      });
   }
 
   addItem() {
     const modalRef = this.modalService.open(ModalClientComponent);
     modalRef.result.then(
       result => {
-        if (result) {
-          this.clientService.createClient(this.client).subscribe(
-            result => {
-              this.loadPage();
-            });
-        }
+        this.loadPage();
       });
   }
 

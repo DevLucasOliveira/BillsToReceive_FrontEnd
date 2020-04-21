@@ -14,17 +14,16 @@ import { Order } from '../../models/order';
 export class ModalItemComponent implements OnInit {
 
   form: FormGroup;
-  client: Client;
   orders: Order[];
   order: Order;
   closeResult: string;
+  @Input() client: Client;
 
   constructor(private formBuilder: FormBuilder,
               public activeModal: NgbActiveModal,
               private activatedRoute: ActivatedRoute,
               private orderService: OrderService,
             ) { }
-
 
   ngOnInit() {
     this.buildForm();
@@ -78,16 +77,15 @@ export class ModalItemComponent implements OnInit {
   }
 
   fillOrder() {
-    let idClient = this.form.controls.idClient.value;
-    let productName = this.form.controls.productName.value;
-    let price = this.form.controls.price.value;
-    let quantity = this.form.controls.quantity.value;
-    let date = this.form.controls.date.value;
-    let total = this.form.controls.total.value;
-    if (this.order === undefined) {
-      this.order = new Order(idClient, productName, price, quantity, date, total);
-    }
-    this.order = new Order(idClient, productName, price, quantity, date, total);
+    let value = this.form.value;
+
+    this.order = new Order(
+      this.client.idClient,
+      value.productName,
+      value.price,
+      value.quantity,
+      value.date,
+      value.total);
   }
 
   closeModal() {
