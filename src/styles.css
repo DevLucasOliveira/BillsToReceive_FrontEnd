@@ -1,6 +1,14 @@
-.jumbotron{
-    padding-top: 0px;
-    background: #fff;
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100vh;
+    background: #efeff1;
+    background: -moz-linear-gradient(60deg, #efeff1 0%, #d7976d 100%);
+    background: -webkit-linear-gradient(60deg #efeff1 0%, #d7976d 100%);
+    background: linear-gradient(60deg, #efeff1 0%, #d7976d 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColor);
 }
 
 .form-control, .input-group-text{
@@ -11,9 +19,3 @@ table.table-hover tbody tr:hover{
     cursor: pointer;
 }
 
-.tittle{
-    text-align: center;
-    font-weight: bold;
-}
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

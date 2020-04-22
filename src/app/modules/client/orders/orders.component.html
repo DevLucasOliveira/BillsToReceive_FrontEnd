@@ -1,25 +1,32 @@
-<div>
-<button class="btn btn-primary" (click)="addItem()">Novo cliente</button>
+<div class="container">
 
-<p *ngIf="!(clients && clients.length)">Não existem conta aberta</p>
+    <button class="btn btn-dark" (click)="addItem()">Novo cliente</button>
+    <div id="modal" class="animated flipInx">
+        <p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
 
-<table class="table"  *ngIf="(clients && clients.length)">
-    <thead>
-        <tr>
-            <th>Cliente</th>
-            <th>Telefone</th>
-            <th>Opção</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let client of clients">
-            <td> {{client.name }} </td>
-            <td> {{client.phone}} </td>
-            <td>
-                <button class="btn btn-success" [routerLink]='["/client-edit/" + client.idClient]' >Alterar</button>
-                <button class="btn btn-danger"  (click)="delete(client)">Excluir</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        <table class="table" *ngIf="(clients && clients.length)">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">Cliente</th>
+                    <th scope="col">Telefone</th>
+                    <th scope="col">Último pedido</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Opção</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let client of clients">
+                    <td scope="row"> {{client.name }} </td>
+                    <td> {{client.phone}} </td>
+                    <td> </td>
+                    <td> </td>
+                    <td>
+                        <button class="btn btn-success" [routerLink]='["/client-edit/" + client.idClient]'><i
+                                class="fas fa-pen-alt"></i></button>
+                        <button class="btn btn-danger" (click)="delete(client)"><i class="far fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>

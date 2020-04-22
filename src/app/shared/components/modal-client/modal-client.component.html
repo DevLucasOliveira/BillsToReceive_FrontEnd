@@ -28,14 +28,13 @@
     <div class="form-group">
         <div class="row">
             <div class="col-md-4">
-                <button type="submit" class="btn btn-dark" (click)="saveWithRequests()" [disabled]="!form.controls.name.valid" ><i
-                        class="fa fa-database">Adicionar items</i></button>
+                <button type="submit" class="btn btn-dark" (click)="saveWithRequests()"
+                    [disabled]="!form.controls.name.valid">Adicionar items</button>
             </div>
             <div class="col-md-8">
-                <button type="submit" class="btn btn-dark" (click)="save()" [disabled]="!form.controls.name.valid"><i
-                        class="fa fa-database">Cadastrar</i></button>
-                <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()"><i class="fa fa-close">
-                        Fechar</i></button>
+                <button type="submit" class="btn btn-dark" (click)="save()"
+                    [disabled]="!form.controls.name.valid">Cadastrar</button>
+                <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()">Fechar</button>
             </div>
         </div>
     </div>

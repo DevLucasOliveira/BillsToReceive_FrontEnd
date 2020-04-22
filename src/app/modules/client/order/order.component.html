@@ -1,82 +1,88 @@
-<form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="phone">Contato</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div class="input-group-text">+ 55</div>
+<div class="container">
+    <div id="modal" class="animated flipInx">
+        <form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="phone">Contato</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text">+ 55</div>
+                            </div>
+                            <input type="text" placeholder="Digite o telefone" name="phone" formControlName="phone"
+                                class="form-control">
+                        </div>
                     </div>
-                    <input type="text" placeholder="Digite o telefone" name="phone" formControlName="phone"
-                        class="form-control">
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="name">Cliente</label>
+                        <input type="text" name="name" placeholder="Digite o nome" formControlName="name"
+                            class="form-control">
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label for="name">Cliente</label>
-                <input type="text" name="name" placeholder="Digite o nome" formControlName="name"
-                    class="form-control">
-            </div>
-        </div>
-    </div>
 
-    <table class="table table-borderless">
-        <thead class="thead-light">
-            <th>Produto</th>
-            <th>Preço</th>
-            <th>Quantidade</th>
-            <th>Data</th>
-            <th>Total</th>
-            <th>
-                <a class="btn btn-sm btn-success text-white" (click)="addItem()"><i class="fa fa-plus"></i>
-                    Adicionar Item</a>
-            </th>
-        </thead>
-        <tbody>
-            <tr *ngIf="form.value.length == 0">
-                <td class="font-italic text-center" colspan="6">
-                    Conta vazia
-                </td>
-            </tr>
-            <tr *ngFor="let order of orders">
-                <td> {{ order.productName }} </td>
-                <td> {{ order.price }}</td>
-                <td> {{ order.quantity }}</td>
-                <td> {{ order.date }} </td>
-                <td> {{ order.total }}</td>
-                <td>
-                    <a class="btn btn-sm btn-info text-white" (click)="updateItem(order)" ><i class="fa fa-pencil"></i>
-                    </a>
-                    <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(order)"><i class="fa fa-trash"></i>
-                    </a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <div class="row">
-        <div class="col-md-6">
-            <div class="form-group">
-                <label><br></label>
-                <div>
-                    <div>
-                        <div></div>
+            <table class="table table-borderless">
+                <thead class="thead-light">
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Data</th>
+                    <th>Total</th>
+                    <th>
+                        <a class="btn btn-sm btn-success text-white" (click)="addItem()"><i class="fa fa-plus"></i>
+                            Adicionar Item</a>
+                    </th>
+                </thead>
+                <tbody>
+                    <tr *ngIf="form.value.length == 0">
+                        <td class="font-italic text-center" colspan="6">
+                            Conta vazia
+                        </td>
+                    </tr>
+                    <tr *ngFor="let order of orders">
+                        <td> {{ order.productName }} </td>
+                        <td> {{ order.price }}</td>
+                        <td> {{ order.quantity }}</td>
+                        <td> {{ order.date }} </td>
+                        <td> {{ order.total }}</td>
+                        <td>
+                            <a class="btn btn-sm btn-info text-white" (click)="updateItem(order)"><i
+                                    class="fas fa-pen-alt"></i>
+                            </a>
+                            <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(order)"><i
+                                    class="far fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label><br></label>
+                        <div>
+                            <div>
+                                <div></div>
+                            </div>
+                            <button type="submit" class="btn btn-dark">
+                                Salvar</button>
+                        </div>
                     </div>
-                    <button type="submit" class="btn btn-dark"><i class="fa fa-database">
-                            Salvar</i></button>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Total</label>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <div type="number" class="input-group-text">R$</div>
+                            </div>
+                            <label *ngFor="let order of orders;"> {{ order.total }} </label>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <label>Total</label>
-                <div class="input-group">
-                    <div class="input-group-prepend">
-                        <div type="number" class="input-group-text">R$</div>
-                    </div>
-                    <label *ngFor="let order of orders;"> {{ order.total }} </label>
-                </div>
-            </div>
-        </div>
+        </form>
     </div>
-</form>
+</div>
