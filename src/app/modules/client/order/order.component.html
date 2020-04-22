@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" id="content" #content>
     <div id="modal" class="animated flipInx">
         <form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
             <div class="row">
@@ -60,7 +60,7 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="form-group">
                         <label><br></label>
                         <div>
@@ -71,10 +71,11 @@
                                 Salvar</button>
                             <button type="button" class="btn btn-outline-dark ml-1"
                                 [routerLink]="['/client']">Fechar</button>
+                            <button type="button" class="btn btn-success ml-1" (click)="SavePDF()">Download PDF</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Total</label>
                         <div class="input-group">
