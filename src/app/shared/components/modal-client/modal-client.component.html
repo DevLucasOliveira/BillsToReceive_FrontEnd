@@ -11,7 +11,7 @@
                     <div class="input-group-prepend">
                         <div class="input-group-text">+ 55</div>
                     </div>
-                    <input type="text" placeholder="Digite o telefone" name="phone" formControlName="phone"
+                    <input type="text" maxlength="12" placeholder="Digite o telefone" name="phone" formControlName="phone"
                         class="form-control">
                 </div>
             </div>
@@ -27,11 +27,11 @@
 <div class="modal-footer">
     <div class="form-group">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <button type="submit" class="btn btn-dark" (click)="saveWithRequests()"
-                    [disabled]="!form.controls.name.valid">Adicionar items</button>
+                    [disabled]="!form.controls.name.valid">Adicionar item</button>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <button type="submit" class="btn btn-dark" (click)="save()"
                     [disabled]="!form.controls.name.valid">Cadastrar</button>
                 <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()">Fechar</button>

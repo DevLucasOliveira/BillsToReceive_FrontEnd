@@ -1,3 +1,7 @@
+.container{
+    padding: 100px;
+}
+
 #modal {
     text-align: left;
     margin: 10px;
@@ -83,4 +87,8 @@ li>button {
     float: right;
     opacity: 0.6;
     transition: opacity 1s;
+}
+
+span{
+    color: red;
 }

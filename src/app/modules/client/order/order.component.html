@@ -9,8 +9,8 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text">+ 55</div>
                             </div>
-                            <input type="text" placeholder="Digite o telefone" name="phone" formControlName="phone"
-                                class="form-control">
+                            <input type="text" maxlength="12" placeholder="Digite o telefone" name="phone"
+                                formControlName="phone" class="form-control">
                         </div>
                     </div>
                 </div>
@@ -19,6 +19,9 @@
                         <label for="name">Cliente</label>
                         <input type="text" name="name" placeholder="Digite o nome" formControlName="name"
                             class="form-control">
+                        <span class="invalid"
+                            *ngIf="form.controls.name.invalid && form.controls.name.dirty">Preenchimento
+                            obrigatório</span>
                     </div>
                 </div>
             </div>
@@ -45,15 +48,13 @@
                         <td> {{ order.productName }} </td>
                         <td> {{ order.price }}</td>
                         <td> {{ order.quantity }}</td>
-                        <td> {{ order.date }} </td>
+                        <td> {{ order.date | date: "dd/MM/yyyy" }} </td>
                         <td> {{ order.total }}</td>
                         <td>
                             <a class="btn btn-sm btn-info text-white" (click)="updateItem(order)"><i
-                                    class="fas fa-pen-alt"></i>
-                            </a>
+                                    class="fas fa-pen-alt"></i></a>
                             <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(order)"><i
-                                    class="far fa-trash"></i>
-                            </a>
+                                    class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 </tbody>
@@ -66,8 +67,10 @@
                             <div>
                                 <div></div>
                             </div>
-                            <button type="submit" class="btn btn-dark">
+                            <button type="submit" class="btn btn-dark" [disabled]="!form.controls.name.valid">
                                 Salvar</button>
+                            <button type="button" class="btn btn-outline-dark ml-1"
+                                [routerLink]="['/client']">Fechar</button>
                         </div>
                     </div>
                 </div>
@@ -78,7 +81,7 @@
                             <div class="input-group-prepend">
                                 <div type="number" class="input-group-text">R$</div>
                             </div>
-                            <label *ngFor="let order of orders;"> {{ order.total }} </label>
+                            <label> {{ total }} </label>
                         </div>
                     </div>
                 </div>

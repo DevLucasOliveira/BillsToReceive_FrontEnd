@@ -17,7 +17,8 @@ const routes: Routes = [
                 component: OrderComponent
             },
             {
-                path: 'orders', component: OrdersComponent
+                path: 'orders', 
+                component: OrdersComponent
             },
             {
                 path: 'client-edit/:id',

@@ -60,13 +60,15 @@ export class ModalItemComponent implements OnInit {
   }
 
   loadForm() {
-    this.form.patchValue({
-      productName: this.order.productName,
-      price: this.order.price,
-      quantity: this.order.quantity,
-      date: this.order.date,
-      total: this.order.total
-    });
+    if (this.order){
+      this.form.patchValue({
+        productName: this.order.productName,
+        price: this.order.price,
+        quantity: this.order.quantity,
+        date: this.order.date,
+        total: this.order.total
+      });
+    }
   }
 
   save() {

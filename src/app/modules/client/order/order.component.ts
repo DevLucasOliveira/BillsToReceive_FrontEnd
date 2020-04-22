@@ -19,13 +19,14 @@ export class OrderComponent implements OnInit {
   order: Order;
   orders: Order[];
   client: Client;
+  total: number;
 
   constructor(private fb: FormBuilder,
-              private router: Router,
-              private orderService: OrderService,
-              private activatedRoute: ActivatedRoute,
-              private modalService: NgbModal,
-              private clientService: ClientService) { }
+    private router: Router,
+    private orderService: OrderService,
+    private activatedRoute: ActivatedRoute,
+    private modalService: NgbModal,
+    private clientService: ClientService) { }
 
 
   ngOnInit() {
@@ -55,8 +56,8 @@ export class OrderComponent implements OnInit {
 
   buildForm() {
     this.form = this.fb.group({
-      name: '',
-      phone: ''
+      name: ['', Validators.required],
+      phone: [null, Validators.required],
     });
   }
 
@@ -96,6 +97,7 @@ export class OrderComponent implements OnInit {
     this.orderService.getOrderByClient(this.client.idClient).subscribe(
       response => {
         this.orders = response;
+        this.getTotal();
       },
       error => {
         console.error(error);
@@ -122,8 +124,6 @@ export class OrderComponent implements OnInit {
       });
   }
 
-
-
   delete(order: Order) {
     this.orderService.deleteOrder(order.idOrder).subscribe(
       response => {
@@ -132,6 +132,10 @@ export class OrderComponent implements OnInit {
       error => {
         console.error(error);
       });
+  }
+
+  getTotal() {
+    this.total = this.orders.reduce((sum, current) => sum + current.total, 0);
   }
 
 

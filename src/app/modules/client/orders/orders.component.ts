@@ -18,7 +18,7 @@ export class OrdersComponent implements OnInit {
   form: FormGroup;
   client: Client;
   clients: Client[];
-
+  
   constructor(private fb: FormBuilder,
               private modalService: NgbModal,
               private clientService: ClientService,
