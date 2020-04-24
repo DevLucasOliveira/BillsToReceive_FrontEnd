@@ -50,7 +50,6 @@ export class ModalItemComponent implements OnInit {
 
   buildForm() {
     this.form = this.formBuilder.group({
-      idClient: 1036,
       productName: ['', Validators.required],
       price: [null, Validators.required],
       quantity: [1, Validators.compose([Validators.required, Validators.min(0)])],
