@@ -65,7 +65,7 @@ export class RegistrationComponent implements OnInit {
   private authenticate(authentication: Authentication) {
     this.userService.authenticate(authentication).subscribe(
       (response: any) => {
-          localStorage.setItem('token', response.Token);
+          localStorage.setItem('token', response.tokenString);
           this.router.navigateByUrl('/client');
       }
     )

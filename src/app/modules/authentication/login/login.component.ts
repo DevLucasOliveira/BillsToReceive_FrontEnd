@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit {
 
       this.userService.authenticate(authentication).subscribe(
         (response: any) => {
-            console.log(response);
+            console.log(response.tokenString);
+            localStorage.setItem('token', response.tokenString);
             this.router.navigateByUrl('/client');
-            localStorage.setItem('token', response.Token);
             this.toastr.success('Você está logado','Sucesso');
         },
         err => {
