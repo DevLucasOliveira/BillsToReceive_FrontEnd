@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
+import { ToastrModule } from 'ngx-toastr';
 
 import { ClientService } from './shared/providers/client.service';
 import { OrderService } from './shared/providers/order.service';
@@ -26,7 +27,8 @@ import { SharedModule } from './shared/shared.module';
     BrowserAnimationsModule,
     MatDialogModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    ToastrModule.forRoot()
   ],
   providers: [ClientService, OrderService],
   bootstrap: [AppComponent]

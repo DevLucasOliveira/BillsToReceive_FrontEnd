@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -13,7 +14,8 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    ToastrModule.forRoot()
   ]
 })
 export class AuthenticationModule { }
