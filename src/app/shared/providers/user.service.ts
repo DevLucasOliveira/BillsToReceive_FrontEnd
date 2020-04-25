@@ -12,14 +12,14 @@ export class UserService {
 
   constructor(private httpClient: HttpClient) { }
 
-  private readonly API_URL: string = environment.apiURL;
+  private readonly API_URL: string = environment.userURL;
 
   public authenticate(authentication: Authentication): Observable<User>{
-    return this.httpClient.post<User>(`${this.API_URL}login`, authentication);
+    return this.httpClient.post<User>(this.API_URL + '/authenticate', authentication);
   }
 
   public register(user: User): Observable<User>{
-    return this.httpClient.post<User>(`${this.API_URL}register`, user);
+    return this.httpClient.post<User>(this.API_URL + '/register', user);
   }
 
 }

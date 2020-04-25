@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/shared/providers/user.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private userService: UserService,
     private router: Router,
-    private formBuilder: FormBuilder) { }
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.verifyToken();
@@ -44,14 +46,15 @@ export class LoginComponent implements OnInit {
 
       this.userService.authenticate(authentication).subscribe(
         (response: any) => {
-          if (response.code === 200) {
-            localStorage.setItem('token', response.tokenConf.original.acess_token);
+            console.log(response);
             this.router.navigateByUrl('/client');
-          }
+            localStorage.setItem('token', response.Token);
+            this.toastr.success('Você está logado','Sucesso');
         },
         err => {
           if (err.status === 401) {
             console.log(err);
+            this.toastr.error('Contate o administrador','Error');
           }
         }
       );

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/providers/user.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/shared/models/user';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +15,10 @@ export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private userService: UserService, private router: Router, private formBuilder: FormBuilder) { }
+  constructor(private userService: UserService, 
+              private router: Router, 
+              private formBuilder: FormBuilder,
+              private toastr: ToastrService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -36,9 +40,11 @@ export class RegistrationComponent implements OnInit {
         response => {
           let authenticate = this.getAuthenticationFromForm();
           this.authenticate(authenticate);
+          this.toastr.success('Você foi registrado','Sucesso');
         },
         error => {
           console.log(error);
+          this.toastr.error('Contate o administrador','Error');
         }
       )
     };
@@ -59,10 +65,8 @@ export class RegistrationComponent implements OnInit {
   private authenticate(authentication: Authentication) {
     this.userService.authenticate(authentication).subscribe(
       (response: any) => {
-        if (response.code === 200) {
-          localStorage.setItem('token', response.tokenConf.original.acess_token);
+          localStorage.setItem('token', response.Token);
           this.router.navigateByUrl('/client');
-        }
       }
     )
   }
