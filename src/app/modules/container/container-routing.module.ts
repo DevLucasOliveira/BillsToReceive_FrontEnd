@@ -1,35 +1,29 @@
-import { OrderComponent } from './../client/order/order.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { InitialPageComponent } from './initial-page/initial-page.component';
-import { OrdersComponent } from '../client/orders/orders.component';
 
 const routes: Routes = [
     {
         path: '', component: InitialPageComponent,
         children: [
             {
-                path: 'client',
+                path: '',
                 loadChildren: () => import('../client/client.module').then(m => m.ClientModule)
             },
             {
-                path: 'order',
-                component: OrderComponent
+                path: 'profile',
+                loadChildren: () => import('../profile/profile.module').then(m => m.ProfileModule)
             },
             {
-                path: 'orders', 
-                component: OrdersComponent
-            },
-            {
-                path: 'client-edit/:id',
-                component: OrderComponent
+                path: 'authentication',
+                loadChildren: () => import('../authentication/authentication.module').then(m => m.AuthenticationModule)
             },
             {
                 path: '**',
-                redirectTo: 'orders'
-            },
+                redirectTo: ''
+            }
         ]
-    }
+    },
 ];
 
 

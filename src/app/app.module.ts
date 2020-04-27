@@ -1,9 +1,11 @@
+import { AuthInterceptor } from './shared/auth/auth.interceptor';
+import { UserService } from './shared/providers/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ToastrModule } from 'ngx-toastr';
 
 import { ClientService } from './shared/providers/client.service';
@@ -30,7 +32,11 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     ToastrModule.forRoot()
   ],
-  providers: [ClientService, OrderService],
+  providers: [ClientService, OrderService, UserService, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
