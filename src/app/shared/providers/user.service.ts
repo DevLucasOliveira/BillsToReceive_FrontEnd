@@ -10,16 +10,25 @@ import { User } from '../models/user';
 })
 export class UserService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   private readonly API_URL: string = environment.userURL;
 
   public authenticate(authentication: Authentication): Observable<User>{
-    return this.httpClient.post<User>(this.API_URL + '/authenticate', authentication);
+    return this.http.post<User>(this.API_URL + '/authenticate', authentication);
   }
 
   public register(user: User): Observable<User>{
-    return this.httpClient.post<User>(this.API_URL + '/register', user);
+    return this.http.post<User>(this.API_URL + '/register', user);
   }
+
+  public getOneUser(userId: number): Observable<User>{
+    return this.http.get<User>(this.API_URL +'/'+ userId);
+  }
+
+  public logout() {
+    localStorage.removeItem('token');
+  }
+
 
 }

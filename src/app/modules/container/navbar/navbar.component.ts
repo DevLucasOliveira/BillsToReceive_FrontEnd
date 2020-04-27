@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  
+
   public token: string;
 
   constructor(
@@ -27,14 +27,9 @@ export class NavbarComponent implements OnInit {
   }
 
   public logout() {
-      (response: any) => {
-        if (response.code === 200) {
-            localStorage.removeItem('token');
-            this.token = undefined;
-            this.router.navigate(['/home']);
-            this.toastr.success('Deslogado com sucesso.', 'Successo');
-        }
-      }
+    this.userService.logout();
+    this.router.navigate(['/home']);
+    this.toastr.success('Deslogado com sucesso.', 'Successo');
   }
 
 }
