@@ -46,15 +46,12 @@ export class LoginComponent implements OnInit {
 
       this.userService.authenticate(authentication).subscribe(
         (response: any) => {
-            localStorage.setItem('token', response.tokenString);
-            this.router.navigateByUrl('/client');
-            this.toastr.success('Você está logado','Sucesso');
+          localStorage.setItem('token', response.tokenString);
+          this.router.navigateByUrl('/client');
+          this.toastr.success('Você está logado', 'Sucesso');
         },
         err => {
-          if (err.status === 401) {
-            console.log(err);
-            this.toastr.error('Contate o administrador','Error');
-          }
+          this.toastr.error('Usuário ou senha incorretos', 'Error');
         }
       );
     }

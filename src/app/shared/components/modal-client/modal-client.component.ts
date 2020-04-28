@@ -68,7 +68,7 @@ export class ModalClientComponent implements OnInit {
   }
 
   onsaveSucess(id: number) {
-    this.router.navigate(['/client-edit/' + id]);
+    this.router.navigate(['client/client-edit/' + id]);
   }
 
   fillClient() {
