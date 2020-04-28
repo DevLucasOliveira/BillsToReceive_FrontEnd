@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { User } from '../models/user';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +30,12 @@ export class UserService {
 
   public logout() {
     localStorage.removeItem('token');
+  }
+
+  public getLoggedIdUser(){
+    let token = localStorage.getItem('token');
+    let decoded = jwt_decode(token); 
+    return +decoded.unique_name;
   }
 
 

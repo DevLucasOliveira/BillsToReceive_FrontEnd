@@ -34,5 +34,10 @@ export class ClientService {
     return this.http.delete<Client>(this.API_URL + '/clients/' + clientId);
   }
 
+  getClientByUser(userId: number): Observable<Client[]>{
+    return this.http.get<Client[]>(this.API_URL + '/clients/Users/' + userId);
+  }
+
+
 
 }

@@ -1,3 +1,4 @@
+import { UserService } from 'src/app/shared/providers/user.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { OrderService } from './../../../shared/providers/order.service';
 import { ModalConfirmationComponent } from './../../../shared/components/modal-confirmation/modal-confirmation.component';
@@ -18,11 +19,13 @@ export class OrdersComponent implements OnInit {
   form: FormGroup;
   client: Client;
   clients: Client[];
-  
-  constructor(private fb: FormBuilder,
-              private modalService: NgbModal,
-              private clientService: ClientService,
-              private orderService: OrderService) { }
+
+  constructor(
+    private fb: FormBuilder,
+    private modalService: NgbModal,
+    private clientService: ClientService,
+    private orderService: OrderService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -55,7 +58,7 @@ export class OrdersComponent implements OnInit {
   }
 
   loadPage() {
-    this.clientService.getClient().subscribe(
+    this.clientService.getClientByUser(this.userService.getLoggedIdUser()).subscribe(
       response => {
         this.clients = response;
       },
@@ -84,6 +87,7 @@ export class OrdersComponent implements OnInit {
 
   addItem() {
     const modalRef = this.modalService.open(ModalClientComponent);
+    modalRef.componentInstance.idUser = this.userService.getLoggedIdUser();
     modalRef.result.then(
       result => {
         this.loadPage();

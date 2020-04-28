@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderService } from '../../providers/order.service';
 import { Client } from '../../models/client';
 import { ClientService } from '../../providers/client.service';
+import { User } from '../../models/user';
 
 @Component({
   selector: 'app-modal-client',
@@ -16,6 +17,7 @@ export class ModalClientComponent implements OnInit {
   form: FormGroup;
   client: Client;
   closeResult: string;
+  @Input() idUser: number;
 
   constructor(private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
@@ -57,7 +59,6 @@ export class ModalClientComponent implements OnInit {
     this.fillClient();
     this.clientService.createClient(this.client).subscribe(
       response => {
-        console.log(response);
         this.closeModal();
         this.onsaveSucess(response.idClient);
       },
@@ -72,8 +73,8 @@ export class ModalClientComponent implements OnInit {
 
   fillClient() {
     let value = this.form.value;
-
     this.client = new Client(
+      this.idUser,
       value.name,
       value.phone);
   }
