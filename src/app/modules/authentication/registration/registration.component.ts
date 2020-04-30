@@ -44,7 +44,7 @@ export class RegistrationComponent implements OnInit {
         },
         error => {
           console.log(error);
-          this.toastr.error('Contate o administrador','Error');
+          this.toastr.warning('Usuário já cadastrado','Atenção');
         }
       )
     } else {
