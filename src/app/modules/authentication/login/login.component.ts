@@ -51,9 +51,11 @@ export class LoginComponent implements OnInit {
           this.toastr.success('Você está logado', 'Sucesso');
         },
         err => {
-          this.toastr.error('Usuário ou senha incorretos', 'Error');
+          this.toastr.error('Usuário ou senha incorreta', 'Error');
         }
       );
+    } else {
+      this.toastr.error('Preencha todos os campos', 'Error');
     }
   }
 

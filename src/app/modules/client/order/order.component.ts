@@ -4,7 +4,7 @@ import { ClientService } from './../../../shared/providers/client.service';
 import { Client } from 'src/app/shared/models/client';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild ,ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Order } from 'src/app/shared/models/order';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as jsPDF from 'jspdf';
@@ -14,7 +14,7 @@ import * as jsPDF from 'jspdf';
   templateUrl: './order.component.html',
   styleUrls: ['./order.component.css']
 })
-  
+
 export class OrderComponent implements OnInit {
 
   form: FormGroup;
@@ -141,23 +141,23 @@ export class OrderComponent implements OnInit {
   }
 
   @ViewChild('content') content: ElementRef;
-  public SavePDF():void{  
-    let content=this.content.nativeElement;  
-    let doc = new jsPDF();  
-    let _elementHandlers =  
-    {  
-      '#editor':function(element,renderer){  
-        return true;  
-      }  
-    };  
-    doc.fromHTML(content.innerHTML,15,15,{  
-  
-      'width':190,  
-      'elementHandlers':_elementHandlers  
-    });  
-  
-    doc.save('test.pdf');  
-  }  
+  public SavePDF(): void {
+    let content = this.content.nativeElement;
+    let doc = new jsPDF();
+    let _elementHandlers =
+    {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+    doc.fromHTML(content.innerHTML, 15, 15, {
+
+      'width': 190,
+      'elementHandlers': _elementHandlers
+    });
+
+    doc.save('test.pdf');
+  }
 
 }
 

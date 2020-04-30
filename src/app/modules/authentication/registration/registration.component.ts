@@ -47,6 +47,8 @@ export class RegistrationComponent implements OnInit {
           this.toastr.error('Contate o administrador','Error');
         }
       )
+    } else {
+      this.toastr.error('Preencha todos os campos', 'Error')
     };
   }
 

@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   public logout() {
     this.userService.logout();
     this.router.navigate(['client/authentication']);
-    this.toastr.success('Deslogado com sucesso.', 'Successo');
+    this.toastr.success('Você foi deslogado', 'Sucesso');
   }
 
 }
