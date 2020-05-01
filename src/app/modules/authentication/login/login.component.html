@@ -2,7 +2,7 @@
     <div id="modal">
         <form [formGroup]="form">
             <div class="form-group">
-                <label for="userName">Usuário: </label>
+                <label for="userName">Nome do usuário: </label>
                 <input type="text" class="form-control" formControlName="userName" name="userName">
                 <span class="invalid"
                     *ngIf="form.controls.userName.invalid && form.controls.userName.dirty">Preenchimento
