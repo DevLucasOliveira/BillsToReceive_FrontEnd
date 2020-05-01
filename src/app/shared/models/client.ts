@@ -3,6 +3,8 @@ export class Client {
     idUser: number;
     name: string;
     phone: string;
+    lastOrderDate?: Date;
+    totalOrders: number;
 
     constructor(
         idUser: number,

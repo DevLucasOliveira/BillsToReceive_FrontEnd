@@ -17,7 +17,6 @@ import { ModalClientComponent } from 'src/app/shared/components/modal-client/mod
 export class OrdersComponent implements OnInit {
 
   form: FormGroup;
-  client: Client;
   clients: Client[];
 
   constructor(
@@ -93,5 +92,8 @@ export class OrdersComponent implements OnInit {
         this.loadPage();
       });
   }
+
+
+
 
 }

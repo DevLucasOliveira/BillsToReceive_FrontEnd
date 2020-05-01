@@ -4,29 +4,34 @@
     <div id="modal" class="animated flipInx">
         <p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
 
-        <table class="table" *ngIf="(clients && clients.length)">
-            <thead class="thead-light">
-                <tr>
-                    <th scope="col">Cliente</th>
-                    <th scope="col">Telefone</th>
-                    <th scope="col">Último pedido</th>
-                    <th scope="col">Total</th>
-                    <th scope="col">Opção</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let client of clients">
-                    <td scope="row"> {{client.name }} </td>
-                    <td> {{client.phone}} </td>
-                    <td> </td>
-                    <td> </td>
-                    <td>
-                        <button class="btn btn-sm btn-info text-white" [routerLink]='["/client/client-edit/" + client.idClient]'><i
-                                class="fas fa-pen-alt"></i></button>
-                        <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i class="far fa-trash-alt"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="table-responsive-sm">
+
+            <table class="table" *ngIf="(clients && clients.length)">
+                <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Telefone</th>
+                        <th scope="col">Cliente</th>
+                        <th scope="col">Último pedido</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Opção</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clients">
+                        <td scope="row"> {{client.phone}} </td>
+                        <td> {{client.name }} </td>
+                        <td> {{client.lastOrderDate | date: "dd/MM/yyyy"}}</td>
+                        <td> {{client.totalOrders}} </td>
+                        <td>
+                            <button class="btn btn-sm btn-info text-white"
+                                [routerLink]='["/client/client-edit/" + client.idClient]'><i
+                                    class="fas fa-pen-alt"></i></button>
+                            <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i
+                                    class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
