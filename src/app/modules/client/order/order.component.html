@@ -60,7 +60,7 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-10">
                     <div class="form-group">
                         <label><br></label>
                         <div>
@@ -71,11 +71,11 @@
                                 Salvar</button>
                             <button type="button" class="btn btn-outline-dark ml-1"
                                 [routerLink]="['/client']">Fechar</button>
-                            <button type="button" class="btn btn-secondary ml-1" (click)="SavePDF()"><i class="fas fa-print"></i></button>
+                            <button type="button" class="btn btn-secondary ml-1" (click)="SavePDF()">Imprimir</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <div class="form-group">
                         <label>Total</label>
                         <div class="input-group total">
@@ -86,6 +86,7 @@
                                 <label> {{ total }} </label>
                             </div>
                         </div>
+                        <button type="button" class="btn btn-success ml-1" >Pagar</button>
                     </div>
                 </div>
             </div>
