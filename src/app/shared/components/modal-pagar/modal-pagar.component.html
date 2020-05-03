@@ -1,1 +1,33 @@
-<p>modal-pagar works!</p>
+<div class="modal-header">
+    <h2 class="display-4 tittle">Pagar parcial</h2>
+    <hr>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form" autocomplete="off" *ngIf="form">
+        <div class="row">
+            <div class="form-group">
+                <label for="amountPaid">Valor</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">R$</div>
+                    </div>
+                    <input type="number" placeholder="0" name="amountPaid" formControlName="amountPaid"
+                        class="form-control">
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="form-group">
+        <div class="row">
+            <div class="col-md-5">
+                <button type="submit" class="btn btn-dark" (click)="save()"
+                    [disabled]="!form.controls.amountPaid.valid">Confirmar</button>
+            </div>
+            <div class="col-md-7">
+                <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

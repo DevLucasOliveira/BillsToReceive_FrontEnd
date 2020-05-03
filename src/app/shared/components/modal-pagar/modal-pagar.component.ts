@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-modal-pagar',
@@ -7,9 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalPagarComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+  @Input() totalOrders: number;
 
-  ngOnInit(): void {
+  constructor(
+    private formBuilder: FormBuilder,
+    public activeModal: NgbActiveModal,
+    ) { }
+
+  ngOnInit(){
+    this.buildForm();
+  }
+
+  buildForm(){
+    this.form = this.formBuilder.group({
+      amountPaid: [null,Validators.required]
+    });
+  }
+
+  save() {
+    let newTotal;
+    newTotal = this.totalOrders - this.form.value.value;
+    this.activeModal.close(newTotal);
+  }
+
+  closeModal() {
+    this.activeModal.close();
   }
 
 }

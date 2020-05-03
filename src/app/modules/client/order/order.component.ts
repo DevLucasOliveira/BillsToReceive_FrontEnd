@@ -1,3 +1,4 @@
+import { ModalPagarComponent } from './../../../shared/components/modal-pagar/modal-pagar.component';
 import { OrderService } from './../../../shared/providers/order.service';
 import { ModalItemComponent } from './../../../shared/components/modal-item/modal-item.component';
 import { ClientService } from './../../../shared/providers/client.service';
@@ -157,6 +158,17 @@ export class OrderComponent implements OnInit {
     });
 
     doc.save('test.pdf');
+  }
+
+  buyPartial(){
+    const modalRef = this.modalService.open(ModalPagarComponent);
+    modalRef.componentInstance.totalOrders = this.client.totalOrders;
+    console.log(this.client.totalOrders);
+    modalRef.result.then(
+      result => {
+        this.loadPage();
+      }
+    )
   }
 
 }
