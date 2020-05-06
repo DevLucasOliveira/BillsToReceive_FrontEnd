@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiURL : 'https://localhost:44344/api',
-  userURL: 'https://localhost:44344/Users'
+  apiURL : 'http://webapicontasaws.us-west-2.elasticbeanstalk.com/api',
+  userURL: 'http://webapicontasaws.us-west-2.elasticbeanstalk.com/Users'
 };
 
 /*
