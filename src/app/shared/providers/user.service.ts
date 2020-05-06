@@ -14,7 +14,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly API_URL: string = environment.userURL;
+  private readonly API_URL: string = environment.apiURL;
 
   public authenticate(authentication: Authentication): Observable<User>{
     return this.http.post<User>(this.API_URL + '/authenticate', authentication);
