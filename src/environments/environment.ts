@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiURL : 'http://webapicontasaws.us-west-2.elasticbeanstalk.com/api'
+  apiURL : 'https://webapicontas20200507150802.azurewebsites.net/api'
 };
 
 /*
