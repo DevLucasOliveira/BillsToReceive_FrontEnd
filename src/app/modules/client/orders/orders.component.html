@@ -23,7 +23,7 @@
                         <td> {{client.lastOrderDate | date: "dd/MM/yyyy"}}</td>
                         <td> {{client.totalOrders}} </td>
                         <td>
-                            <button class="btn btn-sm btn-info text-white"
+                            <button class="btn btn-sm btn-success text-white"
                                 [routerLink]='["/client/client-edit/" + client.idClient]'><i
                                     class="fas fa-pen-alt"></i></button>
                             <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i
