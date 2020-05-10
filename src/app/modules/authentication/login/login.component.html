@@ -1,8 +1,9 @@
+<h1 class="title animated jackInTheBox">Contas a receber</h1>
 <div class="container d-flex justify-content-center">
     <div id="modal">
         <form [formGroup]="form">
             <div class="form-group">
-                <label for="userName">Nome do usuário: </label>
+                <label for="userName">Usuário: </label>
                 <input type="text" class="form-control" formControlName="userName" name="userName">
                 <span class="invalid"
                     *ngIf="form.controls.userName.invalid && form.controls.userName.dirty">Preenchimento
@@ -26,3 +27,14 @@
         </p>
     </div>
 </div>
+<!-- Footer -->
+<footer class="page-footer font-small blue">
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a class="link" href="https://devlucasoliveira.com/"> DevLucasOliveira</a>
+    </div>
+    <!-- Copyright -->
+  
+  </footer>
+  <!-- Footer -->
