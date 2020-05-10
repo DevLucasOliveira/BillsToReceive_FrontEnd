@@ -3,10 +3,8 @@ body {
     justify-content: center;
     text-align: center;
     height: 100vh;
-    background: #efeff1;
-    background: -moz-linear-gradient(60deg, #efeff1 0%, #d7976d 100%);
-    background: -webkit-linear-gradient(60deg #efeff1 0%, #d7976d 100%);
-    background: linear-gradient(60deg, #efeff1 0%, #d7976d 100%);
+    background: #4864e6;     
+    
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColor);
 }
 
