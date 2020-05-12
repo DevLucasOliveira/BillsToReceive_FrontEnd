@@ -17,7 +17,7 @@
 }
 
 .register-button{
-    background: #48d4e6;   
+    background-color: #F39200;   
     align-items: center !important;
     flex-direction: column;
     justify-content: center !important;
@@ -26,18 +26,13 @@
 }
 
 a{
-    color: #48d4e6; 
+    color:  #F39200; 
+    cursor: pointer !important;
 }
 
 span {
     color: red;
 }
-
-#tittle{
-   text-align: center;
-    color:  #48d4e6; 
-}
-    
 
 div.form-group label:not(.text-danger) {
     color: #545d6a;
@@ -63,18 +58,72 @@ div.form-group label:first-child {
     font-size: 0.9rem;
 }
 
-h3 {
-    color:  #48d4e6; 
-}
-
 .link {
-    color: rgb(255, 255, 255);
+    color:  #F39200; 
 }
 
-.animated {
-    font-family: 'Sans serif', cursive;
-    color: rgb(253, 255, 255);
-    font-size: 3em;
-    text-shadow: 3px 3px rgb(0, 0, 0);
-    padding: 30px;
+footer{
+    background-color: #ffffff !important;
+}
+
+.direito{
+    background-color: #eff5f6 !important;
+    text-align: left;
+    font-size: 18px;
+    color: #52729E;
+    padding: 45px 100px 100px;
+    font-family: 'Lora', serif;
+}
+
+.esquerdo{
+    background-color: #ffffff !important;
+    text-align: left;
+    font-size: 18px;
+    color: #828282;
+    padding: 45px 100px 100px;
+    font-family: 'Lora', serif;
+}
+
+.head{
+    background-image:url(../../../../assets/img/credit-card-1583534_1920.png) !important;
+}
+
+.sub{
+    color: #005CA9;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.welcome{
+    font-size: 26px;
+    color: #fff;
+    margin: 0px 0px 40px;
+}
+
+.contas {
+    color: #D0E0E3;
+    font-size: 40px;
+    margin: 0px -150px 25px 0px;
+    letter-spacing: normal;
+    font-weight: bold;
+}
+
+.descricao{
+    padding: 100px 200px 50px 100px;
+}
+
+.login{
+    padding: 40px;
+}
+
+.page{
+    width: 100% !important;
+}
+
+.texto-descricao{
+    color: #D0E0E3;
+    text-align: left;
+    font-size: 18px;
+    position: relative;
+    margin: 0px 0px 12px;
 }

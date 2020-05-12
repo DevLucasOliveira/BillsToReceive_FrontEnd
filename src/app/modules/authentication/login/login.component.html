@@ -1,40 +1,80 @@
-<h1 class="title animated jackInTheBox">Contas a receber</h1>
-<div class="container d-flex justify-content-center">
-    <div id="modal">
-        <form [formGroup]="form">
-            <div class="form-group">
-                <label for="userName">Usuário: </label>
-                <input type="text" class="form-control" formControlName="userName" name="userName">
-                <span class="invalid"
-                    *ngIf="form.controls.userName.invalid && form.controls.userName.dirty">Preenchimento
-                    obrigatório</span>
+<div class="page">
+    <div class="head">
+        <div class="row">
+            <div class="col descricao">
+                <h3 class="welcome">Olá, bem-vindo(a) ao</h3>
+                <h1 class="contas">Contas a receber</h1>
+                <p class="texto-descricao">Controle as dívidas a serem recebidas em sua empresa, de um jeito
+                    fácil e
+                    seguro.</p>
             </div>
-            <div class="form-group">
-                <label for="password">Senha:</label>
-                <input type="password" class="form-control" formControlName="password" name="password">
-                <span class="invalid"
-                    *ngIf="form.controls.password.invalid && form.controls.password.dirty">Preenchimento
-                    obrigatório</span>
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-8 offset-md-2">
-                    <button type="submit" class="btn btn-lg btn-block login-button" (click)="login()">Entrar</button>
+            <div class="col login">
+                <div class="container d-flex justify-content-center">
+                    <div id="modal">
+                        <form [formGroup]="form">
+                            <div class="form-group">
+                                <i class="fas fa-user"></i><label for="userName">Usuário: </label>
+                                <input type="text" class="form-control" formControlName="userName" name="userName">
+                                <span class="invalid"
+                                    *ngIf="form.controls.userName.invalid && form.controls.userName.dirty">Preenchimento
+                                    obrigatório</span>
+                            </div>
+                            <div class="form-group">
+                                <i class="fas fa-key"></i><label for="password">Senha:</label>
+                                <input type="password" class="form-control" formControlName="password" name="password">
+                                <span class="invalid"
+                                    *ngIf="form.controls.password.invalid && form.controls.password.dirty">Preenchimento
+                                    obrigatório</span>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-8 offset-md-2">
+                                    <button type="submit" class="btn btn-lg btn-block login-button"
+                                        (click)="login()">Entrar</button>
+                                </div>
+                            </div>
+                        </form>
+                        <p>Ainda não possui cadastro?
+                            <a routerLink='/registration' routerLinkActive='class'>Registre-se</a>
+                        </p>
+                    </div>
                 </div>
             </div>
-        </form>
-        <p>Ainda não possui cadastro?
-            <a routerLink='/registration' routerLinkActive='class'>Registre-se</a>
-        </p>
+        </div>
+        <br><br><br>
     </div>
-</div>
-<!-- Footer -->
-<footer class="page-footer font-small blue">
+    <div class="body">
+        <div class="row">
+            <div class="col esquerdo">
+                <h5 class="sub">O que é</h5><br>
+                <p>
+                    Contas a receber foi desenvolvido para facilitar o gerencimento e controle de <b>pendências a ser
+                        recebidas</b> em uma empresa.
+                    Para conseguir uma conta no aplicativo, você deve entrar em contato comigo por email (<a
+                        href="mailto:lucasoliveira.si@outlook.com">clique aqui</a>), te passarei as
+                    orientações e a chave de acesso. </p>
+                <p>Deixarei um login de acesso logo abaixo para você testar o aplicativo e ver se realmente gostou.</p>
+                <p>Acesso:</p>
+                <p>Usuário: Testarapp</p>
+                <p>Senha: Bemvindo</p>
+            </div>
+            <div class="col direito">
+                <h5 class="sub">Para quem se destina?</h5><br>
+                <p>Para empresas ou pessoas. Um exemplo de estabelecimentos que possam usar
+                    são: pizzarias, mercados, oficinas, salão de beleza, lojas, pessoas físicas, entre outros.</p>
+                <p>O usuário dever ter no máximo 200 clientes devedores, caso ocorra de ultrapassar esse limite
+                    será cobrado taxas do mesmo.</p>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue">
 
-    <!-- Copyright -->
-    <div class="footer-copyright text-center py-3">© 2020 Copyright:
-      <a class="link" href="https://devlucasoliveira.com/"> DevLucasOliveira</a>
-    </div>
-    <!-- Copyright -->
-  
-  </footer>
-  <!-- Footer -->
+        <!-- Copyright -->
+        <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a class="link" href="https://devlucasoliveira.com/"> DevLucasOliveira</a>
+        </div>
+        <!-- Copyright -->
+
+    </footer>
+    <!-- Footer -->
+</div>

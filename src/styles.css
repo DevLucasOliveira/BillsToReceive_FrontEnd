@@ -3,16 +3,10 @@ body {
     justify-content: center;
     text-align: center;
     height: 100vh;
-    background: #4864e6;     
-    
+    background: #ffffff;     
+    font-family: 'Lora', serif;
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColor);
 }
 
-.form-control, .input-group-text{
-    border:1px solid #0080ff;
-}
 
-table.table-hover tbody tr:hover{
-    cursor: pointer;
-}
 
