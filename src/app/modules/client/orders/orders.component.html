@@ -1,13 +1,13 @@
 <div class="container">
 
-    <button class="btn btn-dark" (click)="addItem()">Novo cliente</button>
-    <div id="modal" class="animated flipInx">
+    <button class="btn btn-dark button" (click)="addItem()">Novo cliente</button>
+    <div id="modal" class="animated flipInx table-responsive">
         <p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
 
-        <div class="table-responsive-sm">
+       
 
             <table class="table" *ngIf="(clients && clients.length)">
-                <thead class="thead-light">
+                <thead class="menu">
                     <tr>
                         <th scope="col">Telefone</th>
                         <th scope="col">Cliente</th>
@@ -34,4 +34,3 @@
             </table>
         </div>
     </div>
-</div>

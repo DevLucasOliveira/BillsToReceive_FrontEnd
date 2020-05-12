@@ -1,5 +1,5 @@
 <div class="container" id="content" #content>
-    <div id="modal" class="animated flipInx">
+    <div id="modal" class="animated flipInx table-responsive">
         <form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
             <div class="row">
                 <div class="col-md-6">
@@ -26,8 +26,8 @@
                 </div>
             </div>
 
-            <table class="table table-borderless">
-                <thead class="thead-light">
+            <table class="table">
+                <thead class="menu">
                     <th>Produto</th>
                     <th>Preço</th>
                     <th>Quantidade</th>
@@ -39,11 +39,7 @@
                     </th>
                 </thead>
                 <tbody>
-                    <tr *ngIf="form.value.length == 0">
-                        <td class="font-italic text-center" colspan="6">
-                            Conta vazia
-                        </td>
-                    </tr>
+                    <p *ngIf="!(orders && orders.length)">{{ client.name }} não tem nenhum pedido em aberto.</p>
                     <tr *ngFor="let order of orders">
                         <td> {{ order.productName }} </td>
                         <td> {{ order.price }}</td>
@@ -60,22 +56,29 @@
                 </tbody>
             </table>
             <div class="row">
-                <div class="col-md-10">
+                <div class="col-md-8">
                     <div class="form-group">
-                        <label><br></label>
-                        <div>
-                            <div>
-                                <div></div>
+                        <button type="submit" class="btn btn-success" [disabled]="!form.controls.name.valid">
+                            Salvar</button>
+                        <button type="button" class="btn btn-danger ml-1" [routerLink]="['/client']">Fechar</button>
+                        <button type="button" class="btn btn-secondary ml-1" (click)="SavePDF()">Imprimir</button>
+                        <button type="button"  *ngIf="(total != 0)" class="btn btn ml-1 buttonBuy" (click)="buyPartial()">Pagar</button>
+                    </div>
+                </div>
+                <div *ngIf="(partial !=0)" class="col-md-2">
+                    <div class="form-group">
+                        <label>Valor Pago</label>
+                        <div class="input-group total">
+                            <div class="input-group-prepend">
+                                <div type="number"> R$&nbsp;</div>
                             </div>
-                            <button type="submit" class="btn btn-dark" [disabled]="!form.controls.name.valid">
-                                Salvar</button>
-                            <button type="button" class="btn btn-outline-dark ml-1"
-                                [routerLink]="['/client']">Fechar</button>
-                            <button type="button" class="btn btn-secondary ml-1" (click)="SavePDF()">Imprimir</button>
+                            <div>
+                                <label> {{ partial }} </label>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div *ngIf="(total !=0)" class="col-md-2">
                     <div class="form-group">
                         <label>Total</label>
                         <div class="input-group total">
@@ -86,7 +89,6 @@
                                 <label> {{ total }} </label>
                             </div>
                         </div>
-                        <button type="button" class="btn btn-success ml-1" (click)="buyPartial()">Pagar</button>
                     </div>
                 </div>
             </div>
