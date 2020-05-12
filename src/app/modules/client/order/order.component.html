@@ -39,7 +39,7 @@
                     </th>
                 </thead>
                 <tbody>
-                    <p *ngIf="!(orders && orders.length)">{{ client.name }} não tem nenhum pedido em aberto.</p>
+                    <p *ngIf="!(orders && orders.length)">Nenhum pedido em aberto.</p>
                     <tr *ngFor="let order of orders">
                         <td> {{ order.productName }} </td>
                         <td> {{ order.price }}</td>
@@ -65,7 +65,7 @@
                         <button type="button"  *ngIf="(total != 0)" class="btn btn ml-1 buttonBuy" (click)="buyPartial()">Pagar</button>
                     </div>
                 </div>
-                <div *ngIf="(partial !=0)" class="col-md-2">
+                <div *ngIf="(partial != null)" class="col-md-2">
                     <div class="form-group">
                         <label>Valor Pago</label>
                         <div class="input-group total">

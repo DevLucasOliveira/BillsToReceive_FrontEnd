@@ -23,6 +23,7 @@ export class OrderComponent implements OnInit {
   orders: Order[];
   client: Client;
   total: number;
+  partial: number;
 
   constructor(private fb: FormBuilder,
     private router: Router,
@@ -101,6 +102,7 @@ export class OrderComponent implements OnInit {
       response => {
         this.orders = response;
         this.getTotal();
+        this.partial;
       },
       error => {
         console.error(error);
@@ -160,13 +162,20 @@ export class OrderComponent implements OnInit {
     doc.save('test.pdf');
   }
 
-  buyPartial(){
+  buyPartial() {
     const modalRef = this.modalService.open(ModalPagarComponent);
-    modalRef.componentInstance.totalOrders = this.client.totalOrders;
-    console.log(this.client.totalOrders);
+    modalRef.componentInstance.partial;
     modalRef.result.then(
       result => {
-        this.loadPage();
+        debugger;
+        if (this.partial == null) {
+          this.partial = result;
+        }else {
+          this.partial += result;
+        }
+      },
+      error => {
+        console.error(error);
       }
     )
   }

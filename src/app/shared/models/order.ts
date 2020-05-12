@@ -6,6 +6,7 @@ export class Order {
     quantity: number;
     date: Date;
     total: number;
+    partial: number;
 
     constructor(
         idClient: number,
@@ -13,7 +14,7 @@ export class Order {
         price: number,
         quantity: number,
         date: Date,
-        total: number
+        total: number,
     ) {
     this.idClient = idClient;
     this.productName = productName;

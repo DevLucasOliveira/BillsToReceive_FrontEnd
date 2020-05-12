@@ -10,7 +10,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class ModalPagarComponent implements OnInit {
 
   form: FormGroup;
-  @Input() totalOrders: number;
+  @Input() partial: number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -29,7 +29,7 @@ export class ModalPagarComponent implements OnInit {
 
   save() {
     let newTotal;
-    newTotal = this.totalOrders - this.form.value.value;
+    newTotal = this.form.value.amountPaid;
     this.activeModal.close(newTotal);
   }
 
