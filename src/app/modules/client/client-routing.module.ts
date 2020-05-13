@@ -1,21 +1,21 @@
+import { ClientComponent } from './client/client.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
-import { OrdersComponent } from '../client/orders/orders.component';
 import { OrderComponent } from './order/order.component';
 
 
 const routes: Routes = [
     {
         path: '',
-        component: OrdersComponent
+        component: ClientComponent
     },
     {
         path: 'order',
         component: OrderComponent
     },
     {
-        path: 'orders',
-        component: OrdersComponent
+        path: 'client',
+        component: ClientComponent
     },
     {
         path: 'client-edit/:id',

@@ -17,15 +17,15 @@ export class UserService {
   private readonly API_URL: string = environment.apiURL;
 
   public authenticate(authentication: Authentication): Observable<User>{
-    return this.http.post<User>(this.API_URL + '/Users/authenticate', authentication);
+    return this.http.post<User>(this.API_URL + '/User/authenticate', authentication);
   }
 
   public register(user: User): Observable<User>{
-    return this.http.post<User>(this.API_URL + '/Users/register', user);
+    return this.http.post<User>(this.API_URL + '/User/register', user);
   }
 
   public getOneUser(userId: number): Observable<User>{
-    return this.http.get<User>(this.API_URL +'/Users/'+ userId);
+    return this.http.get<User>(this.API_URL +'/User/'+ userId);
   }
 
   public logout() {

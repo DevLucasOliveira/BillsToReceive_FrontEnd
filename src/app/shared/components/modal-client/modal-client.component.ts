@@ -1,11 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { OrderService } from '../../providers/order.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Client } from '../../models/client';
 import { ClientService } from '../../providers/client.service';
-import { User } from '../../models/user';
+import { OrdersService } from '../../providers/orders.service';
+import { Orders } from '../../models/orders';
 
 @Component({
   selector: 'app-modal-client',
@@ -17,12 +17,13 @@ export class ModalClientComponent implements OnInit {
   form: FormGroup;
   client: Client;
   closeResult: string;
+  orders: Orders;
   @Input() idUser: number;
 
   constructor(private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
-    private activatedRoute: ActivatedRoute,
     private clientService: ClientService,
+    private ordersService: OrdersService,
     private router: Router
   ) { }
 
@@ -48,7 +49,13 @@ export class ModalClientComponent implements OnInit {
     this.fillClient();
     this.clientService.createClient(this.client).subscribe(
       response => {
-        this.closeModal();
+        this.orders = new Orders(response.idClient, 0, 0);
+        this.ordersService.createOrders(this.orders).subscribe(
+          response => {
+            console.log(response.idOrders);
+            this.closeModal();
+          }
+        )
       },
       error => {
         console.error(error);
@@ -59,8 +66,14 @@ export class ModalClientComponent implements OnInit {
     this.fillClient();
     this.clientService.createClient(this.client).subscribe(
       response => {
-        this.closeModal();
-        this.onsaveSucess(response.idClient);
+        this.orders = new Orders(response.idClient, 0, 0);
+        this.ordersService.createOrders(this.orders).subscribe(
+          response => {
+            console.log(response.idOrders);
+            this.closeModal();        
+            this.onsaveSucess(response.idClient);
+          }
+        )
       },
       error => {
         console.error(error);
@@ -78,6 +91,7 @@ export class ModalClientComponent implements OnInit {
       value.name,
       value.phone);
   }
+
 
   closeModal() {
     this.activeModal.close();

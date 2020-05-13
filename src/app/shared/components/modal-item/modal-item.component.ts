@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Client } from '../../models/client';
 import { Order } from '../../models/order';
+import { Orders } from '../../models/orders';
 
 @Component({
   selector: 'app-modal-item',
@@ -14,9 +15,10 @@ import { Order } from '../../models/order';
 export class ModalItemComponent implements OnInit {
 
   form: FormGroup;
-  orders: Order[];
+  orderArray: Order[];
   closeResult: string;
   @Input() client: Client;
+  @Input() orders: Orders;
   @Input() order: Order;
 
   constructor(private formBuilder: FormBuilder,
@@ -31,6 +33,7 @@ export class ModalItemComponent implements OnInit {
   }
 
   getOrder() {
+    debugger;
     this.activatedRoute.params.subscribe(
       params => {
         if (params.id === undefined) {
@@ -97,14 +100,14 @@ export class ModalItemComponent implements OnInit {
 
     if (this.order === undefined){
       this.order = new Order(
-        this.client.idClient,
+        this.orders.idOrders,
         value.productName,
         value.price,
         value.quantity,
         value.date,
         value.total);
     }
-    this.order.idClient = this.client.idClient;
+    this.order.idOrders = this.orders.idOrders;
     this.order.productName = value.productName;
     this.order.price = value.price;
     this.order.quantity = value.quantity;

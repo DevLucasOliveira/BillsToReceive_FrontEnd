@@ -1,6 +1,6 @@
 export class Order {
     idOrder: number;
-    idClient: number;
+    idOrders: number;
     productName: string;
     price: number;
     quantity: number;
@@ -9,14 +9,14 @@ export class Order {
     partial: number;
 
     constructor(
-        idClient: number,
+        idOrders: number,
         productName: string,
         price: number,
         quantity: number,
         date: Date,
         total: number,
     ) {
-    this.idClient = idClient;
+    this.idOrders = idOrders;
     this.productName = productName;
     this.price = price;
     this.quantity = quantity;

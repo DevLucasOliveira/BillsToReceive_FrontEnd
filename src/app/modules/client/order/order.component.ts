@@ -1,3 +1,4 @@
+import { OrdersService } from './../../../shared/providers/orders.service';
 import { ModalPagarComponent } from './../../../shared/components/modal-pagar/modal-pagar.component';
 import { OrderService } from './../../../shared/providers/order.service';
 import { ModalItemComponent } from './../../../shared/components/modal-item/modal-item.component';
@@ -9,6 +10,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Order } from 'src/app/shared/models/order';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as jsPDF from 'jspdf';
+import { Orders } from 'src/app/shared/models/orders';
 
 @Component({
   selector: 'app-order',
@@ -20,7 +22,8 @@ export class OrderComponent implements OnInit {
 
   form: FormGroup;
   order: Order;
-  orders: Order[];
+  orderArray: Order[];
+  orders: Orders;
   client: Client;
   total: number;
   partial: number;
@@ -30,7 +33,8 @@ export class OrderComponent implements OnInit {
     private orderService: OrderService,
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
-    private clientService: ClientService) { }
+    private clientService: ClientService,
+    private ordersService: OrdersService) { }
 
 
   ngOnInit() {
@@ -46,6 +50,7 @@ export class OrderComponent implements OnInit {
         }
         this.clientService.getOneClient(params.id).subscribe(
           response => {
+            this.getOrders(response.idClient);
             this.loadForm(response);
             this.client = response;
             if (params.id) {
@@ -55,6 +60,19 @@ export class OrderComponent implements OnInit {
           error => {
             console.error(error);
           });
+      });
+  }
+
+  getOrders(idClient) {
+    this.ordersService.getOrdersByClient(idClient).subscribe(
+      response => {
+        this.ordersService.getOneOrders(response.idOrders).subscribe(
+          response => {
+            console.log(response);
+          });
+      },
+      error => {
+        console.error(error)
       });
   }
 
@@ -98,11 +116,18 @@ export class OrderComponent implements OnInit {
 
 
   loadPage() {
-    this.orderService.getOrderByClient(this.client.idClient).subscribe(
+    this.ordersService.getOrdersByClient(this.client.idClient).subscribe(
       response => {
-        this.orders = response;
-        this.getTotal();
-        this.partial;
+        if (response) {
+          this.orderService.getOrderByOrders(this.orders.idOrders).subscribe(
+            response => {
+              this.orderArray = response;
+              this.getTotal();
+            },
+            error => {
+              console.error(error);
+            });
+        }
       },
       error => {
         console.error(error);
@@ -113,6 +138,7 @@ export class OrderComponent implements OnInit {
   addItem() {
     const modalRef = this.modalService.open(ModalItemComponent);
     modalRef.componentInstance.client = this.client;
+    modalRef.componentInstance.orders = this.orders;
     modalRef.result.then(
       result => {
         this.loadPage();
@@ -140,7 +166,7 @@ export class OrderComponent implements OnInit {
   }
 
   getTotal() {
-    this.total = this.orders.reduce((sum, current) => sum + current.total, 0);
+    this.total = this.orderArray.reduce((sum, current) => sum + current.total, 0);
   }
 
   @ViewChild('content') content: ElementRef;
@@ -170,7 +196,7 @@ export class OrderComponent implements OnInit {
         debugger;
         if (this.partial == null) {
           this.partial = result;
-        }else {
+        } else {
           this.partial += result;
         }
       },

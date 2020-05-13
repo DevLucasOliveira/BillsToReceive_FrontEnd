@@ -10,38 +10,36 @@ import { Order } from '../models/order';
 })
 export class OrderService {
 
-
   private readonly API_URL: string = environment.apiURL;
 
   constructor( private http: HttpClient) {}
 
-
-  deleteOrdersOfClient(clientId: number): Observable<Order>{
-    return this.http.delete<Order>(this.API_URL + '/Orders/clients/' + clientId);
+  deleteOrderOfOrders(ordersId: number): Observable<Order>{
+    return this.http.delete<Order>(this.API_URL + '/Order/Orders/' + ordersId);
   }
 
   createOrder(order: Order): Observable<Order>{
-    return this.http.post<Order>(this.API_URL + '/Orders', order);
+    return this.http.post<Order>(this.API_URL + '/Order', order);
   }
 
   updateOrder(order: Order): Observable<Order>{
-    return this.http.put<Order>(this.API_URL + '/Orders', order);
+    return this.http.put<Order>(this.API_URL + '/Order', order);
   }
 
   getOrder(): Observable<Order[]>{
-    return this.http.get<Order[]>(this.API_URL + '/Orders');
+    return this.http.get<Order[]>(this.API_URL + '/Order');
   }
 
   getOneOrder(orderId: number): Observable<Order>{
-    return this.http.get<Order>(this.API_URL + '/Orders/' + orderId);
+    return this.http.get<Order>(this.API_URL + '/Order/' + orderId);
   }
 
   deleteOrder(orderId: number): Observable<Order>{
-    return this.http.delete<Order>(this.API_URL + '/Orders/' + orderId);
+    return this.http.delete<Order>(this.API_URL + '/Order/' + orderId);
   }
 
-  getOrderByClient(clientId: number): Observable<Order[]>{
-    return this.http.get<Order[]>(this.API_URL + '/Orders/clients/' + clientId);
+  getOrderByOrders(ordersId: number): Observable<Order[]>{
+    return this.http.get<Order[]>(this.API_URL + '/Order/Orders/' + ordersId);
   }
 
 }

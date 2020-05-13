@@ -39,7 +39,7 @@
                     </th>
                 </thead>
                 <tbody>
-                    <p *ngIf="!(orders && orders.length)">Nenhum pedido em aberto.</p>
+                    <p *ngIf="!(orderArray && orderArray.length)">Nenhum pedido em aberto.</p>
                     <tr *ngFor="let order of orders">
                         <td> {{ order.productName }} </td>
                         <td> {{ order.price }}</td>

@@ -2,7 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { ModalClientComponent } from './components/modal-client/modal-client.component';
 import { OrderComponent } from '../modules/client/order/order.component';
-import { OrdersComponent } from '../modules/client/orders/orders.component';
+import { ClientComponent } from '../modules/client/client/client.component';
 
 const routes: Routes = [
     {
@@ -13,7 +13,7 @@ const routes: Routes = [
                 component: OrderComponent
             },
             {
-                path: 'orders', component: OrdersComponent
+                path: 'client', component: ClientComponent
             },
             {
                 path: 'client-edit/:id',

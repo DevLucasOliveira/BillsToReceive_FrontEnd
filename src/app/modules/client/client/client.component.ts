@@ -1,20 +1,19 @@
 import { UserService } from 'src/app/shared/providers/user.service';
-import { Router, ActivatedRoute } from '@angular/router';
-import { OrderService } from './../../../shared/providers/order.service';
-import { ModalConfirmationComponent } from './../../../shared/components/modal-confirmation/modal-confirmation.component';
+import { ModalConfirmationComponent } from '../../../shared/components/modal-confirmation/modal-confirmation.component';
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/shared/models/client';
 import { ClientService } from 'src/app/shared/providers/client.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalClientComponent } from 'src/app/shared/components/modal-client/modal-client.component';
+import { OrdersService } from 'src/app/shared/providers/orders.service';
 
 @Component({
-  selector: 'app-orders',
-  templateUrl: './orders.component.html',
-  styleUrls: ['./orders.component.css']
+  selector: 'app-client',
+  templateUrl: './client.component.html',
+  styleUrls: ['./client.component.css']
 })
-export class OrdersComponent implements OnInit {
+export class ClientComponent implements OnInit {
 
   form: FormGroup;
   clients: Client[];
@@ -23,7 +22,7 @@ export class OrdersComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal,
     private clientService: ClientService,
-    private orderService: OrderService,
+    private ordersService: OrdersService,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -72,7 +71,7 @@ export class OrdersComponent implements OnInit {
     modalRef.result.then(
       result => {
         if (result) {
-          this.orderService.deleteOrdersOfClient(client.idClient).subscribe(
+          this.ordersService.deleteOrdersOfClient(client.idClient).subscribe(
             result => {
               this.clientService.deleteClient(client.idClient).subscribe(
                 result => {
