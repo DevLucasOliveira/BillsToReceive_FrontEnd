@@ -1,10 +1,9 @@
-import { Authentication } from './../../../shared/models/authentication';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/shared/providers/user.service';
+import { UserService } from '@shared/providers/user.service';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/shared/models/user';
 import { ToastrService } from 'ngx-toastr';
+import { Authentication, User } from '@shared/models';
 
 @Component({
   selector: 'app-registration',

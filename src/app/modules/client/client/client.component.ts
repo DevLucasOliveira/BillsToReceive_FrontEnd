@@ -1,4 +1,6 @@
-import { UserService } from 'src/app/shared/providers/user.service';
+import { OrderItemService } from './../../../shared/providers/order-item.service';
+import { OrderItem } from './../../../shared/models/order-item';
+import { UserService } from '@shared/providers/user.service';
 import { ModalConfirmationComponent } from '../../../shared/components/modal-confirmation/modal-confirmation.component';
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/shared/models/client';
@@ -6,7 +8,7 @@ import { ClientService } from 'src/app/shared/providers/client.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ModalClientComponent } from 'src/app/shared/components/modal-client/modal-client.component';
-import { OrdersService } from 'src/app/shared/providers/orders.service';
+import { OrderService } from '@shared/providers/order.service';
 
 @Component({
   selector: 'app-client',
@@ -22,7 +24,8 @@ export class ClientComponent implements OnInit {
     private fb: FormBuilder,
     private modalService: NgbModal,
     private clientService: ClientService,
-    private ordersService: OrdersService,
+    private ordersService: OrderService,
+    private orderItemService: OrderItemService,
     private userService: UserService) { }
 
   ngOnInit() {
@@ -45,14 +48,7 @@ export class ClientComponent implements OnInit {
   }
 
   delete(client: Client) {
-    this.clientService.deleteClient(client.idClient).subscribe(
-      response => {
-        this.loadPage();
-      },
-      error => {
-        console.error(error);
-        this.confirmDelete(client);
-      });
+    this.confirmDelete(client);
   }
 
   loadPage() {
@@ -67,18 +63,15 @@ export class ClientComponent implements OnInit {
 
   confirmDelete(client: Client) {
     const modalRef = this.modalService.open(ModalConfirmationComponent);
-    modalRef.componentInstance.message = 'Deseja realmente excluir? Esse cliente possui pedidos em aberto';
+    modalRef.componentInstance.message = 'Deseja realmente excluir?';
     modalRef.result.then(
       result => {
         if (result) {
-          this.ordersService.deleteOrdersOfClient(client.idClient).subscribe(
+          this.clientService.deleteClient(client.idClient).subscribe(
             result => {
-              this.clientService.deleteClient(client.idClient).subscribe(
-                result => {
-                  this.loadPage();
-                }
-              );
-            });
+              this.loadPage();
+            }
+          );
         }
       });
   }

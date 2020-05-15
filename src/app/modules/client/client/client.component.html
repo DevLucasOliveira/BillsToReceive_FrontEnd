@@ -1,12 +1,35 @@
 <div class="container">
 
     <button class="btn btn-dark button" (click)="addItem()">Novo cliente</button>
-    <div id="modal" class="animated flipInx table-responsive">
+    <div id="modal" class="animated">
         <p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
 
-       
 
-            <table class="table" *ngIf="(clients && clients.length)">
+
+        <div class="row">
+            <div class="d-none d-md-block col-xl-3 col-lg-3 col-md-3 col-sm-12">Telefone</div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">Cliente</div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">Último pedido</div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">Total</div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">Opção</div>
+        </div>
+        <div *ngFor="let client of clients" class="row">
+            <div class="d-md-none">Telefonesdf</div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">{{client.phone}}</div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12">{{client.name}}</div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12"></div>
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-12"></div>
+            <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12">
+                <button class="btn btn-sm btn-success text-white"
+                    [routerLink]='["/client/client-edit/" + client.idClient]'>
+                    <i class="fas fa-pen-alt"></i></button>
+                <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)">
+                    <i class="far fa-trash-alt"></i></button>
+            </div>
+        </div>
+
+
+        <!-- <table class="table" *ngIf="(clients && clients.length)">
                 <thead class="menu">
                     <tr>
                         <th scope="col">Telefone</th>
@@ -20,8 +43,8 @@
                     <tr *ngFor="let client of clients">
                         <td scope="row"> {{client.phone}} </td>
                         <td> {{client.name }} </td>
-                        <td> {{client.lastOrderDate | date: "dd/MM/yyyy"}}</td>
-                        <td> {{client.totalOrders}} </td>
+                        <td> </td>
+                        <td>  </td>
                         <td>
                             <button class="btn btn-sm btn-success text-white"
                                 [routerLink]='["/client/client-edit/" + client.idClient]'><i
@@ -31,6 +54,6 @@
                         </td>
                     </tr>
                 </tbody>
-            </table>
-        </div>
+            </table> -->
     </div>
+</div>

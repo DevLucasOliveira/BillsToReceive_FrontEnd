@@ -1,16 +1,15 @@
-import { OrdersService } from './../../../shared/providers/orders.service';
 import { ModalPagarComponent } from './../../../shared/components/modal-pagar/modal-pagar.component';
-import { OrderService } from './../../../shared/providers/order.service';
 import { ModalItemComponent } from './../../../shared/components/modal-item/modal-item.component';
 import { ClientService } from './../../../shared/providers/client.service';
 import { Client } from 'src/app/shared/models/client';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Order } from 'src/app/shared/models/order';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import * as jsPDF from 'jspdf';
-import { Orders } from 'src/app/shared/models/orders';
+import { OrderItem, Order } from '@shared/models';
+import { OrderItemService } from '@shared/providers/order-item.service';
+import { OrderService } from '@shared/providers/order.service';
 
 @Component({
   selector: 'app-order',
@@ -21,20 +20,20 @@ import { Orders } from 'src/app/shared/models/orders';
 export class OrderComponent implements OnInit {
 
   form: FormGroup;
+  orderItem: OrderItem;
+  orderItems: OrderItem[];
   order: Order;
-  orderArray: Order[];
-  orders: Orders;
   client: Client;
   total: number;
   partial: number;
 
   constructor(private fb: FormBuilder,
     private router: Router,
-    private orderService: OrderService,
+    private orderItemService: OrderItemService,
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
     private clientService: ClientService,
-    private ordersService: OrdersService) { }
+    private orderService: OrderService) { }
 
 
   ngOnInit() {
@@ -50,7 +49,7 @@ export class OrderComponent implements OnInit {
         }
         this.clientService.getOneClient(params.id).subscribe(
           response => {
-            this.getOrders(response.idClient);
+          
             this.loadForm(response);
             this.client = response;
             if (params.id) {
@@ -63,18 +62,6 @@ export class OrderComponent implements OnInit {
       });
   }
 
-  getOrders(idClient) {
-    this.ordersService.getOrdersByClient(idClient).subscribe(
-      response => {
-        this.ordersService.getOneOrders(response.idOrders).subscribe(
-          response => {
-            console.log(response);
-          });
-      },
-      error => {
-        console.error(error)
-      });
-  }
 
   buildForm() {
     this.form = this.fb.group({
@@ -116,18 +103,9 @@ export class OrderComponent implements OnInit {
 
 
   loadPage() {
-    this.ordersService.getOrdersByClient(this.client.idClient).subscribe(
+    this.orderItemService.getOrderByOrders(this.client.orders[0].idOrder).subscribe(
       response => {
-        if (response) {
-          this.orderService.getOrderByOrders(this.orders.idOrders).subscribe(
-            response => {
-              this.orderArray = response;
-              this.getTotal();
-            },
-            error => {
-              console.error(error);
-            });
-        }
+        this.orderItems = response;
       },
       error => {
         console.error(error);
@@ -137,26 +115,25 @@ export class OrderComponent implements OnInit {
 
   addItem() {
     const modalRef = this.modalService.open(ModalItemComponent);
-    modalRef.componentInstance.client = this.client;
-    modalRef.componentInstance.orders = this.orders;
+    modalRef.componentInstance.order = this.client.orders[0];
     modalRef.result.then(
       result => {
         this.loadPage();
       });
   }
 
-  updateItem(order: Order) {
+  updateItem(orderItem: OrderItem) {
     const modalRef = this.modalService.open(ModalItemComponent);
-    modalRef.componentInstance.order = order;
-    modalRef.componentInstance.client = this.client;
+    modalRef.componentInstance.orderItem = orderItem;
+    modalRef.componentInstance.order = this.client.orders[0];
     modalRef.result.then(
       result => {
         this.loadPage();
       });
   }
 
-  delete(order: Order) {
-    this.orderService.deleteOrder(order.idOrder).subscribe(
+  delete(orderItem: OrderItem) {
+    this.orderItemService.deleteOrderItem(orderItem.idOrderItem).subscribe(
       response => {
         this.loadPage();
       },
@@ -166,7 +143,7 @@ export class OrderComponent implements OnInit {
   }
 
   getTotal() {
-    this.total = this.orderArray.reduce((sum, current) => sum + current.total, 0);
+//     return this.order.items.reduce((sum, current) => sum + current.total, 0);
   }
 
   @ViewChild('content') content: ElementRef;

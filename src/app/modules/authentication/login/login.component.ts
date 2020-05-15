@@ -1,7 +1,7 @@
 import { Authentication } from './../../../shared/models/authentication';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/app/shared/providers/user.service';
+import { UserService } from '@shared/providers/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 

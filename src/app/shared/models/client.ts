@@ -1,11 +1,12 @@
+import { Order } from '.';
+
 export class Client {
     idClient: number;
     idUser: number;
     name: string;
     phone: string;
-    lastOrderDate?: Date;
-    totalOrders: number;
-
+    orders: Array<Order>;
+    
     constructor(
         idUser: number,
         name: string,

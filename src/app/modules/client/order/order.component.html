@@ -39,17 +39,17 @@
                     </th>
                 </thead>
                 <tbody>
-                    <p *ngIf="!(orderArray && orderArray.length)">Nenhum pedido em aberto.</p>
-                    <tr *ngFor="let order of orders">
-                        <td> {{ order.productName }} </td>
-                        <td> {{ order.price }}</td>
-                        <td> {{ order.quantity }}</td>
-                        <td> {{ order.date | date: "dd/MM/yyyy" }} </td>
-                        <td> {{ order.total }}</td>
+                    <p *ngIf="!(orderItems && orderItems.length)">Nenhum pedido em aberto.</p>
+                    <tr *ngFor="let orderItem of orderItems">
+                        <td> {{ orderItem.productName }} </td>
+                        <td> {{ orderItem.price }}</td>
+                        <td> {{ orderItem.quantity }}</td>
+                        <td> {{ orderItem.date | date: "dd/MM/yyyy" }} </td>
+                        <td> {{ orderItem.total }}</td>
                         <td>
-                            <a class="btn btn-sm btn-info text-white" (click)="updateItem(order)"><i
+                            <a class="btn btn-sm btn-info text-white" (click)="updateItem(orderItem)"><i
                                     class="fas fa-pen-alt"></i></a>
-                            <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(order)"><i
+                            <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(orderItem)"><i
                                     class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
@@ -86,7 +86,7 @@
                                 <div type="number"> R$&nbsp;</div>
                             </div>
                             <div>
-                                <label> {{ total }} </label>
+                                <label> {{ getTotal() }} </label>
                             </div>
                         </div>
                     </div>

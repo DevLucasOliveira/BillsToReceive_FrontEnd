@@ -1,27 +1,18 @@
-export class Order {
+import { OrderItem } from '@shared/models';
+export class Order{
     idOrder: number;
-    idOrders: number;
-    productName: string;
-    price: number;
-    quantity: number;
-    date: Date;
+    idClient: number;
     total: number;
-    partial: number;
+    paid: number;
+    items: Array<OrderItem>;
 
     constructor(
-        idOrders: number,
-        productName: string,
-        price: number,
-        quantity: number,
-        date: Date,
+        idClient: number,
         total: number,
-    ) {
-    this.idOrders = idOrders;
-    this.productName = productName;
-    this.price = price;
-    this.quantity = quantity;
-    this.date = date;
-    this.total = total;
+        paid: number
+        ) {
+        this.idClient = idClient;
+        this.total = total;
+        this.paid = paid;
     }
-
 }

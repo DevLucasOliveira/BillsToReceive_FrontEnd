@@ -1,11 +1,11 @@
-import { OrderService } from './../../providers/order.service';
+import { OrderItem } from './../../models/order-item';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Client } from '../../models/client';
-import { Order } from '../../models/order';
-import { Orders } from '../../models/orders';
+import { Order } from '@shared/models';
+import { OrderItemService } from '@shared/providers/order-item.service';
 
 @Component({
   selector: 'app-modal-item',
@@ -17,14 +17,13 @@ export class ModalItemComponent implements OnInit {
   form: FormGroup;
   orderArray: Order[];
   closeResult: string;
-  @Input() client: Client;
-  @Input() orders: Orders;
   @Input() order: Order;
+  @Input() orderItem: OrderItem;
 
   constructor(private formBuilder: FormBuilder,
               public  activeModal: NgbActiveModal,
               private activatedRoute: ActivatedRoute,
-              private orderService: OrderService,
+              private orderItemService: OrderItemService,
   ) { }
 
   ngOnInit() {
@@ -33,16 +32,15 @@ export class ModalItemComponent implements OnInit {
   }
 
   getOrder() {
-    debugger;
     this.activatedRoute.params.subscribe(
       params => {
         if (params.id === undefined) {
           this.loadForm();
           return;
         }
-        this.orderService.getOneOrder(params.id).subscribe(
+        this.orderItemService.getOneOrder(params.id).subscribe(
           response => {
-            this.order = response;
+            this.orderItem = response;
             this.loadForm();
           },
           error => {
@@ -62,21 +60,21 @@ export class ModalItemComponent implements OnInit {
   }
 
   loadForm() {
-    if (this.order){
+    if (this.orderItem){
       this.form.patchValue({
-        productName: this.order.productName,
-        price: this.order.price,
-        quantity: this.order.quantity,
-        date: this.order.date,
-        total: this.order.total
+        productName: this.orderItem.productName,
+        price: this.orderItem.price,
+        quantity: this.orderItem.quantity,
+        date: this.orderItem.date,
+        total: this.orderItem.total
       });
     }
   }
 
   save() {
-    if (this.order === undefined){
+    if (this.orderItem === undefined){
       this.fillOrder();
-      this.orderService.createOrder(this.order).subscribe(
+      this.orderItemService.createOrder(this.orderItem).subscribe(
         response => {
           this.closeModal();
         },
@@ -85,7 +83,7 @@ export class ModalItemComponent implements OnInit {
         });
     }else{
       this.fillOrder();
-      this.orderService.updateOrder(this.order).subscribe(
+      this.orderItemService.updateOrderItem(this.orderItem).subscribe(
         response => {
           this.closeModal();
         },
@@ -98,21 +96,21 @@ export class ModalItemComponent implements OnInit {
   fillOrder() {
     let value = this.form.value;
 
-    if (this.order === undefined){
-      this.order = new Order(
-        this.orders.idOrders,
+    if (this.orderItem === undefined){
+      this.orderItem = new OrderItem(
+        this.order.idOrder,
         value.productName,
         value.price,
         value.quantity,
         value.date,
         value.total);
     }
-    this.order.idOrders = this.orders.idOrders;
-    this.order.productName = value.productName;
-    this.order.price = value.price;
-    this.order.quantity = value.quantity;
-    this.order.date = value.date;
-    this.order.total = value.total;
+    this.orderItem.idOrder = this.order.idOrder;
+    this.orderItem.productName = value.productName;
+    this.orderItem.price = value.price;
+    this.orderItem.quantity = value.quantity;
+    this.orderItem.date = value.date;
+    this.orderItem.total = value.total;
   }
 
   closeModal() {
