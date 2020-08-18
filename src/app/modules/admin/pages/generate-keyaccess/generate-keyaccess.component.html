@@ -1,3 +1,11 @@
-<p>
-  generate-keyaccess works!
-</p>
+<div class="card col-md-12 background" style="width: 18rem;">
+  <div class="card-body">
+    <div class="input-group input-group-lg m-2" *ngIf="key == undefined">
+      <input type="text" class="form-control" placeholder="Chave de acesso" disabled aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <div class="input-group input-group-lg m-2" *ngIf="key != undefined">
+      <input type="text" class="form-control" value="{{key}}" disabled aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <button class="btn btn-lg btn-block button m-2" (click)="submit()">Gerar</button>
+  </div>
+</div>

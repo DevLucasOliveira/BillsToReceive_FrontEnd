@@ -43,7 +43,7 @@ export class LoginAdminComponent implements OnInit {
             return;
           }
           this.toastr.success('Admin autenticado com sucesso','Sucesso');
-          this.router.navigate(['/admin/keyaccess']);
+          this.router.navigate(['/admin/keyaccess/' +response.data.id]);
         },
         (err) => {
           console.error(err);

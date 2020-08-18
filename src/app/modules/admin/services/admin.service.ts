@@ -16,7 +16,7 @@ export class AdminService {
   }
 
   public createAcessKey(admin: any) {
-    return this.http.post(`${this.url}/v1/users/keyaccess`, admin);
+    return this.http.post(`${this.url}/v1/admin/keyaccess`, admin);
   }
 
 

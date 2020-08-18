@@ -2,6 +2,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { LoginAdminComponent } from './pages/login-admin/login-admin.component';
 import { GenerateKeyaccessComponent } from './pages/generate-keyaccess/generate-keyaccess.component';
+import { FrameAdminPageComponent } from '@shared/frame/frame-admin';
 
 
 const routes: Routes = [
@@ -11,7 +12,10 @@ const routes: Routes = [
   },
   {
     path: 'keyaccess',
-    component: GenerateKeyaccessComponent
+    component: FrameAdminPageComponent,
+    children: [
+      { path: ':id', component: GenerateKeyaccessComponent }
+    ]
   }
 ];
 

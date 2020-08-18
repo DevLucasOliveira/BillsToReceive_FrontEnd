@@ -6,3 +6,15 @@
 }
 
 
+span {
+  color: red;
+}
+
+.button{
+  background-color: #F39200;
+  align-items: center !important;
+  flex-direction: column;
+  justify-content: center !important;
+  display: flex;
+  text-align: center !important;
+}

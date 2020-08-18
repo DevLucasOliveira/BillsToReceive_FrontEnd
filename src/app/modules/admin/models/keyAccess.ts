@@ -1,8 +1,8 @@
 export class KeyAccess{
 
-  constructor(key: string) {
-    this.Key = key;
+  constructor(admin: string) {
+    this.admin = admin;
   }
 
-  public Key: string;
+  public admin: string;
 }

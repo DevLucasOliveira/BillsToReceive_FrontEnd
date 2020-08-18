@@ -15,6 +15,10 @@ const routes: Routes = [
     component: FramePageComponent,
     loadChildren: () => import('../../modules/client/client.module').then(m => m.ClientModule),
     canActivate: [AuthGuard]
+  },
+  {
+    path: '**',
+    redirectTo: '/login'
   }
 ];
 
