@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-   apiURL : 'https://webapicontas20200507150802.azurewebsites.net/api',
-  // apiURL: 'https://localhost:44344/api'
+   //apiURL : 'https://webapicontas20200507150802.azurewebsites.net/api',
+   apiURL: 'https://localhost:44330'
 };
 
 /*

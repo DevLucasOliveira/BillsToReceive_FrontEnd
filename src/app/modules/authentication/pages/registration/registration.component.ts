@@ -14,6 +14,8 @@ import { ToastrService } from 'ngx-toastr';
 export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
+  userRegister: UserRegister;
+  userLogin: UserLogin;
 
   constructor(private userService: UserService,
               private router: Router,
@@ -26,39 +28,45 @@ export class RegistrationComponent implements OnInit {
 
   private buildForm() {
     this.form = this.formBuilder.group({
-      fullName: ['', Validators.required],
+      name: ['', Validators.required],
       userName: ['', Validators.required],
-      password: ['', Validators.required]
+      password: ['', Validators.required],
+      keyAccess: ['', Validators.required]
     });
   }
 
   public register() {
     if (this.form.valid) {
-      let user = this.getUserFromForm();
+      this.userRegister = this.createUserRegister();
 
-      this.userService.register(user).subscribe(
-        response => {
-          let authenticate = this.getAuthenticationFromForm();
-          this.authenticate(authenticate);
+      this.userService.register(this.userRegister).subscribe(
+        (response: any) => {
+          if(!response.success){
+            this.toastr.error(response.message,'Error');
+            return;
+          }
+          let userLogin = this.getUserFromAuthenticate();
           this.toastr.success('Você foi registrado','Sucesso');
+          this.authenticate(userLogin);
         },
-        error => {
-          console.log(error);
-          this.toastr.warning('Usuário já cadastrado','Atenção');
+        (err) => {
+          console.error(err);
+          this.toastr.error('Ocorreu um erro interno','Error');
+          return;
         }
       )
     } else {
-      this.toastr.error('Preencha todos os campos', 'Error')
+      this.toastr.warning('Preencha todos os campos', 'Atenção');
     };
   }
 
-  private getUserFromForm(): UserRegister {
+  private createUserRegister(): UserRegister {
     let value = this.form.value;
 
-    return new UserRegister(value.fullName, value.userName, value.password);
+    return new UserRegister(value.name, value.userName, value.password, value.keyAccess);
   }
 
-  private getAuthenticationFromForm(): UserLogin {
+  private getUserFromAuthenticate(): UserLogin {
     let value = this.form.value;
 
     return new UserLogin(value.userName, value.password);
@@ -67,7 +75,11 @@ export class RegistrationComponent implements OnInit {
   private authenticate(user: UserLogin) {
     this.userService.authenticate(user).subscribe(
       (response: any) => {
-          localStorage.setItem('token', response.tokenString);
+        if(!response.success){
+          this.toastr.warning(response.message,'Atenção');
+          return;
+        }
+          localStorage.setItem('token', response.data);
           this.router.navigateByUrl('/client');
       }
     )

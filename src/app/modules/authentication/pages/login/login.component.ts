@@ -44,24 +44,28 @@ export class LoginComponent implements OnInit {
 
       this.userService.authenticate(user).subscribe(
         (response: any) => {
-          localStorage.setItem('token', response.tokenString);
-          this.router.navigateByUrl('/client');
-          this.toastr.success('Você está logado', 'Sucesso');
+          if(!response.success){
+            this.toastr.error(response.message,'Error');
+            return;
+          }
+            localStorage.setItem('token', response.data);
+            this.router.navigateByUrl('/client');
         },
         (err) => {
-          this.toastr.error('Usuário ou senha incorreta', 'Error');
+          console.error(err);
+          this.toastr.error('Ocorreu um erro interno','Error');
+          return;
         }
       );
     } else {
-      this.toastr.error('Preencha todos os campos', 'Error');
+      this.toastr.warning('Preencha todos os campos', 'Atenção');
     }
   }
 
   public createUser(): UserLogin {
-    return new UserLogin(
-      this.form.controls.userName.value,
-      this.form.controls.password.value
-    );
+    let value = this.form.value;
+
+    return new UserLogin(value.userName, value.password);
   }
 
 
