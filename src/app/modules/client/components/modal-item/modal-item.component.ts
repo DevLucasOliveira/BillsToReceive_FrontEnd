@@ -1,9 +1,9 @@
-import { OrderItem } from './../../models/order-item';
+import { OrderItem } from '../../../../shared/models/order-item';
 import { Component, OnInit, Input, Inject } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Client } from '../../models/client';
+import { Client } from '../../../../shared/models/client';
 import { Order } from '@shared/models';
 import { OrderItemService } from '@shared/providers/order-item.service';
 

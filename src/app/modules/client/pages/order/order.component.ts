@@ -1,6 +1,6 @@
-import { ModalPagarComponent } from './../../../shared/components/modal-pagar/modal-pagar.component';
-import { ModalItemComponent } from './../../../shared/components/modal-item/modal-item.component';
-import { ClientService } from './../../../shared/providers/client.service';
+import { ModalPagarComponent } from '../../components/modal-pagar/modal-pagar.component';
+import { ModalItemComponent } from '../../components/modal-item/modal-item.component';
+import { ClientService } from '../../../../shared/providers/client.service';
 import { Client } from 'src/app/shared/models/client';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -49,7 +49,7 @@ export class OrderComponent implements OnInit {
         }
         this.clientService.getOneClient(params.id).subscribe(
           response => {
-          
+
             this.loadForm(response);
             this.client = response;
             if (params.id) {

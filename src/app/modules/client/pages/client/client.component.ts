@@ -1,13 +1,13 @@
-import { OrderItemService } from './../../../shared/providers/order-item.service';
-import { OrderItem } from './../../../shared/models/order-item';
+import { OrderItemService } from '../../../../shared/providers/order-item.service';
+import { OrderItem } from '../../../../shared/models/order-item';
 import { UserService } from 'src/app/modules/authentication/services/user.service';
-import { ModalConfirmationComponent } from '../../../shared/components/modal-confirmation/modal-confirmation.component';
+import { ModalConfirmationComponent } from '../../components/modal-confirmation/modal-confirmation.component';
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/shared/models/client';
 import { ClientService } from 'src/app/shared/providers/client.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { ModalClientComponent } from 'src/app/shared/components/modal-client/modal-client.component';
+import { ModalClientComponent } from 'src/app/modules/client/components/modal-client/modal-client.component';
 import { OrderService } from '@shared/providers/order.service';
 
 @Component({

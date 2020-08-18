@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Client } from '../../models/client';
-import { ClientService } from '../../providers/client.service';
+import { Client } from '../../../../shared/models/client';
+import { ClientService } from '../../../../shared/providers/client.service';
 import { Order } from '@shared/models';
 import { OrderService } from '@shared/providers/order.service';
 

@@ -1,16 +1,17 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { FooterComponent } from './footer/footer.component';
+import { FramePageComponent } from './frame/frame';
+import { FrameAuthenticationPageComponent } from './frame/frame-authentication';
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent],
+  declarations: [NavbarComponent, FooterComponent, FramePageComponent, FrameAuthenticationPageComponent],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
-    FormsModule,
+    RouterModule,
   ]
 })
 export class SharedModule { }

@@ -5,17 +5,18 @@ import { RegistrationComponent } from './pages/registration/registration.compone
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { ToastrModule } from 'ngx-toastr';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
 @NgModule({
-  declarations: [LoginComponent, RegistrationComponent],
+  declarations: [LoginComponent, RegistrationComponent, AuthGuard],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
     AuthenticationRoutingModule,
-    ToastrModule.forRoot()
+    ToastrModule.forRoot(),
   ]
 })
 export class AuthenticationModule { }
