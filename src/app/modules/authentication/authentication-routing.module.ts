@@ -1,5 +1,5 @@
 import { AuthGuard } from './guard/auth.guard';
-import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './pages/login/login.component';
 import { NgModule } from '@angular/core';
 import { RegistrationComponent } from './pages/registration/registration.component';
