@@ -44,16 +44,17 @@ export class LoginComponent implements OnInit {
 
       this.userService.authenticate(user).subscribe(
         (response: any) => {
-          if(!response.success){
-            this.toastr.error(response.message,'Error');
+          if (!response.success) {
+            this.toastr.error(response.message, 'Error');
             return;
           }
-            localStorage.setItem('token', response.data);
-            this.router.navigateByUrl('/client');
+          this.toastr.success('Usuário autenticado com sucesso', 'Sucesso');
+          localStorage.setItem('token', response.data);
+          this.router.navigateByUrl('/client');
         },
         (err) => {
           console.error(err);
-          this.toastr.error('Ocorreu um erro interno','Error');
+          this.toastr.error('Ocorreu um erro interno', 'Error');
           return;
         }
       );
