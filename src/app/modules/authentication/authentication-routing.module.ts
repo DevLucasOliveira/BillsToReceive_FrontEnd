@@ -8,7 +8,6 @@ import { FramePageComponent } from '@shared/frame/frame';
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'registration', component: RegistrationComponent },
   {
@@ -16,9 +15,6 @@ const routes: Routes = [
     component: FramePageComponent,
     loadChildren: () => import('../../modules/client/client.module').then(m => m.ClientModule),
     canActivate: [AuthGuard]
-  },
-  {
-    path: '**', canActivate: [AuthGuard]
   }
 ];
 
