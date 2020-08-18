@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/app/modules/authentication/services/user.service';
 import { Router } from '@angular/router';
-import { UserService } from '@shared/providers/user.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -31,5 +31,4 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['client/authentication']);
     this.toastr.success('Você foi deslogado', 'Sucesso');
   }
-
 }

@@ -1,6 +1,6 @@
 import { OrderItemService } from './../../../shared/providers/order-item.service';
 import { OrderItem } from './../../../shared/models/order-item';
-import { UserService } from '@shared/providers/user.service';
+import { UserService } from 'src/app/modules/authentication/services/user.service';
 import { ModalConfirmationComponent } from '../../../shared/components/modal-confirmation/modal-confirmation.component';
 import { Component, OnInit } from '@angular/core';
 import { Client } from 'src/app/shared/models/client';

@@ -1,9 +1,10 @@
+import { UserLogin } from '@shared/models';
+import { UserRegister } from './../../models/user-register';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from '@shared/providers/user.service';
+import { UserService } from 'src/app/modules/authentication/services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
-import { Authentication, User } from '@shared/models';
 
 @Component({
   selector: 'app-registration',
@@ -14,8 +15,8 @@ export class RegistrationComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private userService: UserService, 
-              private router: Router, 
+  constructor(private userService: UserService,
+              private router: Router,
               private formBuilder: FormBuilder,
               private toastr: ToastrService) { }
 
@@ -51,20 +52,20 @@ export class RegistrationComponent implements OnInit {
     };
   }
 
-  private getUserFromForm(): User {
+  private getUserFromForm(): UserRegister {
     let value = this.form.value;
 
-    return new User(value.fullName, value.userName, value.password);
+    return new UserRegister(value.fullName, value.userName, value.password);
   }
 
-  private getAuthenticationFromForm(): Authentication {
+  private getAuthenticationFromForm(): UserLogin {
     let value = this.form.value;
 
-    return new Authentication(value.userName, value.password);
+    return new UserLogin(value.userName, value.password);
   }
 
-  private authenticate(authentication: Authentication) {
-    this.userService.authenticate(authentication).subscribe(
+  private authenticate(user: UserLogin) {
+    this.userService.authenticate(user).subscribe(
       (response: any) => {
           localStorage.setItem('token', response.tokenString);
           this.router.navigateByUrl('/client');

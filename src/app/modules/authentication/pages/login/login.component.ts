@@ -1,7 +1,7 @@
-import { Authentication } from './../../../shared/models/authentication';
+import { UserLogin } from '@shared/models';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '@shared/providers/user.service';
+import { UserService } from 'src/app/modules/authentication/services/user.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
@@ -14,7 +14,8 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup;
 
-  constructor(private userService: UserService,
+  constructor(
+    private userService: UserService,
     private router: Router,
     private formBuilder: FormBuilder,
     private toastr: ToastrService) { }
@@ -39,18 +40,15 @@ export class LoginComponent implements OnInit {
 
   public login() {
     if (this.form.valid) {
-      let authentication = new Authentication(
-        this.form.controls.userName.value,
-        this.form.controls.password.value
-      );
+      let user = this.createUser();
 
-      this.userService.authenticate(authentication).subscribe(
+      this.userService.authenticate(user).subscribe(
         (response: any) => {
           localStorage.setItem('token', response.tokenString);
           this.router.navigateByUrl('/client');
           this.toastr.success('Você está logado', 'Sucesso');
         },
-        err => {
+        (err) => {
           this.toastr.error('Usuário ou senha incorreta', 'Error');
         }
       );
@@ -59,4 +57,13 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  public createUser(): UserLogin {
+    return new UserLogin(
+      this.form.controls.userName.value,
+      this.form.controls.password.value
+    );
+  }
+
+
 }
+

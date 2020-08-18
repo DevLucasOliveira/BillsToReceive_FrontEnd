@@ -1,7 +1,7 @@
 import { OrderItemService } from './shared/providers/order-item.service';
 import { OrderItem } from './shared/models/order-item';
 import { AuthInterceptor } from './shared/auth/auth.interceptor';
-import { UserService } from './shared/providers/user.service';
+import { UserService } from './modules/authentication/services/user.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';

@@ -16,23 +16,19 @@
     position: relative;
 }
 
-.register-button{
-    background-color: #F39200;   
-    align-items: center !important;
-    flex-direction: column;
-    justify-content: center !important;
-    display: flex;
-    text-align: center !important;
+.login-button{
+    background-color:  #F39200;
 }
 
 a{
-    color:  #F39200; 
+    color:  #F39200;
     cursor: pointer !important;
 }
 
 span {
     color: red;
 }
+
 
 div.form-group label:not(.text-danger) {
     color: #545d6a;
@@ -59,7 +55,7 @@ div.form-group label:first-child {
 }
 
 .link {
-    color:  #F39200; 
+    color:  #F39200;
 }
 
 footer{
@@ -85,7 +81,7 @@ footer{
 }
 
 .head{
-    background-image:url(../../../../assets/img/credit-card-1583534_1920.png) !important;
+    background-image:url(../../../../../assets/img/credit-card-1583534_1920.png) !important;
 }
 
 .sub{

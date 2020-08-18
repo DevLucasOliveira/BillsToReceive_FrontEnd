@@ -1,0 +1,19 @@
+li{
+  margin-left: 25px;
+}
+
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
+a{
+  color: #fff !important;
+}
+
+nav a:hover {
+  color: #F39200 !important;
+}
+
+nav{
+  background-color: #443e3e !important;
+}

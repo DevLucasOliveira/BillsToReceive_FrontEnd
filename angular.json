@@ -26,7 +26,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.css",
-              "node_modules/ngx-toastr/toastr.css" 
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },
@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "Angularcontas"
+  "defaultProject": "Angularcontas",
+  "cli": {
+    "analytics": "0c1d5735-4f6d-4d5d-ba0d-9b2110e93645"
+  }
 }
