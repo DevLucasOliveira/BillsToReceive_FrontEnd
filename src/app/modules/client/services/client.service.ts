@@ -1,8 +1,8 @@
-import { Client } from 'src/app/shared/models/client';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
+import { Client } from '../models/client';
 
 
 @Injectable({
@@ -22,10 +22,6 @@ export class ClientService {
     return this.http.get<Client>(this.url + '/Client/' + clientId);
   }
 
-  createClient(client: Client): Observable<Client> {
-    return this.http.post<Client>(this.url + '/Client', client);
-  }
-
   updateClient(client: Client): Observable<Client> {
     return this.http.put<Client>(this.url + '/Client', client);
   }
@@ -38,6 +34,8 @@ export class ClientService {
     return this.http.get<Client[]>(this.url + '/Client/User/' + userId);
   }
 
-
+  createClient(client: Client) {
+    return this.http.post(`${this.url}/v1/clients`, client);
+  }
 
 }

@@ -17,10 +17,11 @@ export class RegistrationComponent implements OnInit {
   userRegister: UserRegister;
   userLogin: UserLogin;
 
-  constructor(private userService: UserService,
-              private router: Router,
-              private formBuilder: FormBuilder,
-              private toastr: ToastrService) { }
+  constructor(
+    private userService: UserService,
+    private router: Router,
+    private formBuilder: FormBuilder,
+    private toastr: ToastrService) { }
 
   ngOnInit() {
     this.buildForm();
@@ -41,17 +42,17 @@ export class RegistrationComponent implements OnInit {
 
       this.userService.register(this.userRegister).subscribe(
         (response: any) => {
-          if(!response.success){
-            this.toastr.error(response.message,'Error');
+          if (!response.success) {
+            this.toastr.error(response.message, 'Error');
             return;
           }
           let userLogin = this.getUserFromAuthenticate();
-          this.toastr.success('Você foi registrado','Sucesso');
+          this.toastr.success('Você foi registrado', 'Sucesso');
           this.authenticate(userLogin);
         },
         (err) => {
           console.error(err);
-          this.toastr.error('Ocorreu um erro interno','Error');
+          this.toastr.error('Ocorreu um erro interno', 'Error');
           return;
         }
       )
@@ -75,12 +76,12 @@ export class RegistrationComponent implements OnInit {
   private authenticate(user: UserLogin) {
     this.userService.authenticate(user).subscribe(
       (response: any) => {
-        if(!response.success){
-          this.toastr.warning(response.message,'Atenção');
+        if (!response.success) {
+          this.toastr.warning(response.message, 'Atenção');
           return;
         }
-          localStorage.setItem('token', response.data);
-          this.router.navigateByUrl('/client');
+        localStorage.setItem('token', response.data.token);
+        this.router.navigateByUrl('/client/' + response.data.id);
       }
     )
   }

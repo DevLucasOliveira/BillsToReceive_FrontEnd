@@ -1,4 +1,4 @@
-<button class="btn btn-dark button" (click)="addItem()">Novo cliente</button>
+<button class="btn btn-dark button" (click)="addClient()">Novo cliente</button>
 <p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
 
 <table class="table" *ngIf="(clients && clients.length)">
@@ -15,7 +15,7 @@
       <th scope="row"> {{client.cellPhone}} </th>
       <td>{{client.name}}</td>
       <td> </td>
-      <td><button class="btn btn-sm btn-success text-white" [routerLink]='["/client/client-edit/" + client.id]'><i
+      <td><button class="btn btn-sm btn-success text-white" [routerLink]='["/client/client-edit/" + client.user]'><i
             class="fas fa-pen-alt"></i></button>
         <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i
             class="far fa-trash-alt"></i></button></td>

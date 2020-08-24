@@ -1,12 +1,14 @@
+import { Order } from './../../../shared/models/order';
 export class Client {
 
-  constructor(id: string, name: string, cellPhone: string) {
-    this.id = id;
+  constructor(user: string, name: string, cellPhone: string) {
+    this.user = user;
     this.name = name;
     this.cellPhone = cellPhone;
   }
 
-  public id: string;
+  public user: string;
   public name: string;
   public cellPhone: string;
+  public orders: Order;
 }

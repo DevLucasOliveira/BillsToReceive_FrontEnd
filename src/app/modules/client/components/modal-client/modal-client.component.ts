@@ -1,11 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Client } from '../../../../shared/models/client';
-import { ClientService } from '../../../../shared/providers/client.service';
-import { Order } from '@shared/models';
-import { OrderService } from '@shared/providers/order.service';
+import { ClientService } from '../../services/client.service';
+import { Client } from '../../models/client';
 
 @Component({
   selector: 'app-modal-client',
@@ -17,56 +16,58 @@ export class ModalClientComponent implements OnInit {
   form: FormGroup;
   client: Client;
   closeResult: string;
-  order: Order;
-  @Input() idUser: number;
+  @Input() idUser: string;
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(
+    private formBuilder: FormBuilder,
     public activeModal: NgbActiveModal,
     private clientService: ClientService,
-    private orderService: OrderService,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) { }
 
   ngOnInit() {
     this.buildForm();
   }
 
+
   buildForm() {
     this.form = this.formBuilder.group({
       name: ['', Validators.required],
-      phone: [null, Validators.required],
+      phone: ['', Validators.required],
     });
   }
 
   loadForm(client: Client) {
     this.form.patchValue({
       name: client.name,
-      phone: client.phone
+      phone: client.cellPhone
     });
   }
 
   save() {
+    debugger;
     this.fillClient();
     this.clientService.createClient(this.client).subscribe(
-      response => {
+      (response: any) => {
         this.closeModal();
       },
-      error => {
-        console.error(error);
+      (err) => {
+        console.error(err);
       });
   }
 
-  saveWithRequests() {
-    this.fillClient();
-    this.clientService.createClient(this.client).subscribe(
-      response => {
-            this.closeModal();
-            this.onsaveSucess(response.idClient);
-      },
-      error => {
-        console.error(error);
-      });
-  }
+  // saveWithRequests() {
+  //   this.fillClient();
+  //   this.clientService.createClient(this.client).subscribe(
+  //     response => {
+  //       this.closeModal();
+  //       this.onsaveSucess(response.idClient);
+  //     },
+  //     error => {
+  //       console.error(error);
+  //     });
+  // }
 
   onsaveSucess(id: number) {
     this.router.navigate(['client/client-edit/' + id]);

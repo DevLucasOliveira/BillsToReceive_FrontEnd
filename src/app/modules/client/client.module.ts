@@ -1,3 +1,4 @@
+import { MaskDirective } from './../../directives/mask.directive';
 import { ModalClientComponent } from 'src/app/modules/client/components/modal-client/modal-client.component';
 import { OrderComponent } from './pages/order/order.component';
 import { NgModule } from '@angular/core';
@@ -13,7 +14,15 @@ import { ModalConfirmationComponent } from './components/modal-confirmation/moda
 
 
 @NgModule({
-  declarations: [OrderComponent, ClientComponent, ProfileComponent, ModalClientComponent, ModalPagarComponent, ModalItemComponent, ModalConfirmationComponent],
+  declarations: [
+    MaskDirective,
+    OrderComponent,
+    ClientComponent,
+    ProfileComponent,
+    ModalClientComponent,
+    ModalPagarComponent,
+    ModalItemComponent,
+    ModalConfirmationComponent],
   imports: [
     CommonModule,
     ClientRoutingModule,

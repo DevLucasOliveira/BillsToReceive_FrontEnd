@@ -1,7 +1,5 @@
 import { ModalPagarComponent } from '../../components/modal-pagar/modal-pagar.component';
 import { ModalItemComponent } from '../../components/modal-item/modal-item.component';
-import { ClientService } from '../../../../shared/providers/client.service';
-import { Client } from 'src/app/shared/models/client';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
@@ -10,6 +8,8 @@ import * as jsPDF from 'jspdf';
 import { OrderItem, Order } from '@shared/models';
 import { OrderItemService } from '@shared/providers/order-item.service';
 import { OrderService } from '@shared/providers/order.service';
+import { Client } from '../../models/client';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'app-order',
@@ -73,7 +73,7 @@ export class OrderComponent implements OnInit {
   loadForm(client: Client) {
     this.form.patchValue({
       name: client.name,
-      phone: client.phone
+      phone: client.cellPhone
     });
   }
 
@@ -94,7 +94,7 @@ export class OrderComponent implements OnInit {
     let value = this.form.value;
 
     this.client.name = value.name;
-    this.client.phone = value.phone;
+    this.client.cellPhone = value.phone;
   }
 
   onSaveSucess() {
@@ -143,7 +143,7 @@ export class OrderComponent implements OnInit {
   }
 
   getTotal() {
-//     return this.order.items.reduce((sum, current) => sum + current.total, 0);
+    //     return this.order.items.reduce((sum, current) => sum + current.total, 0);
   }
 
   @ViewChild('content') content: ElementRef;

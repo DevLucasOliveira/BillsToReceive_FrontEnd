@@ -7,7 +7,7 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: ':id',
     component: ClientComponent
   },
   {
@@ -22,7 +22,7 @@ const routes: Routes = [
     path: 'client-edit/:id',
     component: OrderComponent
   },
-    {
+  {
     path: 'profile',
     component: ProfileComponent
   }

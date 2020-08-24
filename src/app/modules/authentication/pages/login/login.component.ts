@@ -48,9 +48,9 @@ export class LoginComponent implements OnInit {
             this.toastr.error(response.message, 'Error');
             return;
           }
+          localStorage.setItem('token', response.data.token);
           this.toastr.success('Usuário autenticado com sucesso', 'Sucesso');
-          localStorage.setItem('token', response.data);
-          this.router.navigateByUrl('/client');
+          this.router.navigateByUrl('/client/' + response.data.id);
         },
         (err) => {
           console.error(err);
