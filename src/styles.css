@@ -1,12 +1,9 @@
 body {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    height: 100vh;
-    background: #ffffff;
-    font-family: 'Lora', serif;
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColor);
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  /* height: 100vh;
+    background: #ffffff; */
+  font-family: 'Lora', serif;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3023ae', endColor);
 }
-
-
-

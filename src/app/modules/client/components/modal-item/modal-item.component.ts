@@ -3,7 +3,6 @@ import { Component, OnInit, Input, Inject } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Client } from '../../../../shared/models/client';
 import { Order } from '@shared/models';
 import { OrderItemService } from '@shared/providers/order-item.service';
 
@@ -21,9 +20,9 @@ export class ModalItemComponent implements OnInit {
   @Input() orderItem: OrderItem;
 
   constructor(private formBuilder: FormBuilder,
-              public  activeModal: NgbActiveModal,
-              private activatedRoute: ActivatedRoute,
-              private orderItemService: OrderItemService,
+    public activeModal: NgbActiveModal,
+    private activatedRoute: ActivatedRoute,
+    private orderItemService: OrderItemService,
   ) { }
 
   ngOnInit() {
@@ -60,7 +59,7 @@ export class ModalItemComponent implements OnInit {
   }
 
   loadForm() {
-    if (this.orderItem){
+    if (this.orderItem) {
       this.form.patchValue({
         productName: this.orderItem.productName,
         price: this.orderItem.price,
@@ -72,7 +71,7 @@ export class ModalItemComponent implements OnInit {
   }
 
   save() {
-    if (this.orderItem === undefined){
+    if (this.orderItem === undefined) {
       this.fillOrder();
       this.orderItemService.createOrder(this.orderItem).subscribe(
         response => {
@@ -81,7 +80,7 @@ export class ModalItemComponent implements OnInit {
         error => {
           console.error(error);
         });
-    }else{
+    } else {
       this.fillOrder();
       this.orderItemService.updateOrderItem(this.orderItem).subscribe(
         response => {
@@ -96,7 +95,7 @@ export class ModalItemComponent implements OnInit {
   fillOrder() {
     let value = this.form.value;
 
-    if (this.orderItem === undefined){
+    if (this.orderItem === undefined) {
       this.orderItem = new OrderItem(
         this.order.idOrder,
         value.productName,

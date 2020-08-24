@@ -1,3 +1,9 @@
 a {
   color: #F39200;
 }
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
