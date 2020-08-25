@@ -46,14 +46,19 @@ export class ModalClientComponent implements OnInit {
   }
 
   save() {
-    debugger;
     this.fillClient();
     this.clientService.createClient(this.client).subscribe(
       (response: any) => {
+        if (!response.success) {
+          this.toastr.warning(response.message, 'Atenção');
+          return;
+        }
+        this.toastr.success('Cliente cadastrado', 'Sucesso');
         this.closeModal();
       },
       (err) => {
         console.error(err);
+        this.toastr.error('Ocorreu um erro interno', 'Error');
       });
   }
 

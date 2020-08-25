@@ -7,6 +7,7 @@ export class Client {
     this.cellPhone = cellPhone;
   }
 
+  public id: string;
   public user: string;
   public name: string;
   public cellPhone: string;
