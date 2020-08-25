@@ -5,12 +5,14 @@
 <div class="modal-body">
   <form [formGroup]="form" autocomplete="off" *ngIf="form">
     <div class="form-group">
+      <label for="phone">Contato</label>
       <div class="input-group">
-        <input type="text" placeholder="Digite o telefone" name="phone" formControlName="phone" mask="(NN) NNNNN-NNNN"
+        <input type="text" placeholder="Digite o telefone" name="phone" formControlName="phone" mask="(NN)NNNNN-NNNN"
           class="form-control">
       </div>
     </div>
     <div class="form-group">
+      <label for="phone">Cliente</label>
       <input type="text" name="name" placeholder="Digite o nome" formControlName="name" class="form-control">
       <span class="invalid" *ngIf="form.controls.name.invalid && form.controls.name.dirty">Preenchimento
         obrigatório</span>
@@ -20,14 +22,14 @@
 <div class="modal-footer">
   <div class="form-group">
     <div class="row">
-      <!-- <div class="col-md-5">
-        <button type="submit" class="btn btn-dark" (click)="saveWithRequests()"
-          [disabled]="!form.controls.name.valid">Adicionar item</button>
-      </div> -->
+      <div class="col-md-5">
+        <button type="submit" class="btn btn-sm btn-success text-white button" (click)="saveWithRequests()"
+          [disabled]="!form.controls.name.valid"><i class="fa fa-plus"></i>Adicionar pedidos</button>
+      </div>
       <div class="col-md-7">
-        <button type="submit" class="btn btn-dark" (click)="save()"
+        <button type="submit" class="btn btn-success" (click)=" save()"
           [disabled]="!form.controls.name.valid">Cadastrar</button>
-        <button type="button" class="btn btn-outline-dark ml-1" (click)="closeModal()">Fechar</button>
+        <button type="button" class="btn btn-outline-danger ml-1" (click)="closeModal()">Fechar</button>
       </div>
     </div>
   </div>

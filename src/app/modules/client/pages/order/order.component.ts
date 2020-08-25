@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import * as jsPDF from 'jspdf';
 import { OrderItem, Order } from '@shared/models';
 import { OrderItemService } from '@shared/providers/order-item.service';
 import { OrderService } from '@shared/providers/order.service';
@@ -144,25 +143,6 @@ export class OrderComponent implements OnInit {
 
   getTotal() {
     //     return this.order.items.reduce((sum, current) => sum + current.total, 0);
-  }
-
-  @ViewChild('content') content: ElementRef;
-  public SavePDF(): void {
-    let content = this.content.nativeElement;
-    let doc = new jsPDF();
-    let _elementHandlers =
-    {
-      '#editor': function (element, renderer) {
-        return true;
-      }
-    };
-    doc.fromHTML(content.innerHTML, 15, 15, {
-
-      'width': 190,
-      'elementHandlers': _elementHandlers
-    });
-
-    doc.save('test.pdf');
   }
 
   buyPartial() {

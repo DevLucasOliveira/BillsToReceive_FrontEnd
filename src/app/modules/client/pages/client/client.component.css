@@ -14,14 +14,7 @@ input {
 }
 
 .button {
-  background-color: #F39200 !important;
-  font-weight: bold;
-  border: none;
-  padding: 20px;
-  color: #443e3e;
-  border-radius: 20px;
-  font-size: 1em;
-  margin: 70px 0px 0px 0px !important;
+  margin: 70px 0px 25px 0px !important;
 }
 
 li>button:hover {

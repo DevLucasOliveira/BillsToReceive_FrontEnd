@@ -1,116 +1,104 @@
-
-
-.total{
-    font-weight: bolder;
-    font-size: 1.5em;
+.total {
+  font-weight: bolder;
+  font-size: 1.5em;
 }
 
-#modal {
-    text-align: left;
-    padding: 10px;
-    background: #443e3e; 
-    color: #fff !important;
-    border-radius: 20px;
-    -webkit-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
-    -moz-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
-    box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);;
-    font-family: 'Lora', serif;
-    margin: 40px 0px 70px 0px;
+form {
+  margin-top: 70px !important;
 }
 
 .title {
-    font-family: 'Dancing Script', cursive;
-    color: #fff;
-    font-size: 5em;
-    text-shadow: 3px 5px #000;
+  font-family: 'Dancing Script', cursive;
+  color: #fff;
+  font-size: 5em;
+  text-shadow: 3px 5px #000;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 
 input {
-    width: 100%;
-    line-height: 50px;
-    text-indent: 10px;
-    font-size: 1.2em;
+  width: 100%;
+  line-height: 50px;
+  text-indent: 10px;
+  font-size: 1.2em;
 }
 
 .danger {
-    background-color: #ff0000;
-    color: #fff;
-    font-weight: bold;
-    padding: 5px;
-    margin-top: 10px;
+  background-color: #ff0000;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+  margin-top: 10px;
 }
 
 .button {
-    background-color: #000;
-    border: none;
-    padding: 20px;
-    color: #fff;
-    border-radius: 30px;
-    font-size: 1em;
-    padding-left: 50px;
-    padding-right: 50px;
+  background-color: #000;
+  border: none;
+  padding: 20px;
+  color: #fff;
+  border-radius: 30px;
+  font-size: 1em;
+  padding-left: 50px;
+  padding-right: 50px;
 }
 
 li>button:hover {
-    opacity: 1;
-    transition: opacity 1s;
+  opacity: 1;
+  transition: opacity 1s;
 }
 
 button {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 ul {
-    text-align: left;
-    margin: 10px;
-    padding: 10px;
-    list-style: none;
-    background: #fff;
-    border-radius: 10px;
-    -webkit-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
-    -moz-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
-    box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);;
+  text-align: left;
+  margin: 10px;
+  padding: 10px;
+  list-style: none;
+  background: #fff;
+  border-radius: 10px;
+  -webkit-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+  -moz-box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+  box-shadow: 3px 4px 14px 0px rgba(0, 0, 0, 0.39);
+  ;
 }
 
 li {
-    padding: 15px;
-    margin:  10px;
-    font-size: 1em;
-    font-style: italic;
-    border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+  padding: 15px;
+  margin: 10px;
+  font-size: 1em;
+  font-style: italic;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
 }
 
 li>button {
-    border: none;
-    background-color: #fff;
-    font-size: 1em;
-    float: right;
-    opacity: 0.6;
-    transition: opacity 1s;
+  border: none;
+  background-color: #fff;
+  font-size: 1em;
+  float: right;
+  opacity: 0.6;
+  transition: opacity 1s;
 }
 
-span{
-    color: red;
+span {
+  color: red;
 }
 
-.table{
-    color: #fff;
-    font-weight: bold;
-    font-size: 18px;
+.table {
+  font-size: 18px;
 }
 
-.menu{
-    background: #443e3e; 
-    color: #F39200;
-    font-weight: bold;
+.menu {
+  background: #443e3e;
+  color: #F39200;
+  font-weight: bold;
 }
 
-.buttonBuy{
-    background-color: #F39200;
-    color: #fff;
+.buttonBuy {
+  background-color: #F39200;
+  color: #fff;
 }

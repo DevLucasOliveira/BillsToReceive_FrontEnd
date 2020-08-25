@@ -1,97 +1,93 @@
 <div class="container" id="content" #content>
-    <div id="modal" class="animated flipInx table-responsive">
-        <form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="phone">Contato</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text">+ 55</div>
-                            </div>
-                            <input type="text" maxlength="12" placeholder="Digite o telefone" name="phone"
-                                formControlName="phone" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <label for="name">Cliente</label>
-                        <input type="text" name="name" placeholder="Digite o nome" formControlName="name"
-                            class="form-control">
-                        <span class="invalid"
-                            *ngIf="form.controls.name.invalid && form.controls.name.dirty">Preenchimento
-                            obrigatório</span>
-                    </div>
-                </div>
-            </div>
-
-            <table class="table">
-                <thead class="menu">
-                    <th>Produto</th>
-                    <th>Preço</th>
-                    <th>Quantidade</th>
-                    <th>Data</th>
-                    <th>Total</th>
-                    <th>
-                        <a class="btn btn-sm btn-success text-white" (click)="addItem()"><i class="fa fa-plus"></i>
-                            Adicionar Item</a>
-                    </th>
-                </thead>
-                <tbody>
-                    <p *ngIf="!(orderItems && orderItems.length)">Nenhum pedido em aberto.</p>
-                    <tr *ngFor="let orderItem of orderItems">
-                        <td> {{ orderItem.productName }} </td>
-                        <td> {{ orderItem.price }}</td>
-                        <td> {{ orderItem.quantity }}</td>
-                        <td> {{ orderItem.date | date: "dd/MM/yyyy" }} </td>
-                        <td> {{ orderItem.total }}</td>
-                        <td>
-                            <a class="btn btn-sm btn-info text-white" (click)="updateItem(orderItem)"><i
-                                    class="fas fa-pen-alt"></i></a>
-                            <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(orderItem)"><i
-                                    class="far fa-trash-alt"></i></a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success" [disabled]="!form.controls.name.valid">
-                            Salvar</button>
-                        <button type="button" class="btn btn-danger ml-1" [routerLink]="['/client']">Fechar</button>
-                        <button type="button" class="btn btn-secondary ml-1" (click)="SavePDF()">Imprimir</button>
-                        <button type="button"  *ngIf="(total != 0)" class="btn btn ml-1 buttonBuy" (click)="buyPartial()">Pagar</button>
-                    </div>
-                </div>
-                <div *ngIf="(partial != null)" class="col-md-2">
-                    <div class="form-group">
-                        <label>Valor Pago</label>
-                        <div class="input-group total">
-                            <div class="input-group-prepend">
-                                <div type="number"> R$&nbsp;</div>
-                            </div>
-                            <div>
-                                <label> {{ partial }} </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div *ngIf="(total !=0)" class="col-md-2">
-                    <div class="form-group">
-                        <label>Total</label>
-                        <div class="input-group total">
-                            <div class="input-group-prepend">
-                                <div type="number"> R$&nbsp;</div>
-                            </div>
-                            <div>
-                                <label> {{ getTotal() }} </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </form>
+  <form [formGroup]="form" autocomplete="off" *ngIf="form" (ngSubmit)="save()">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="phone">Contato</label>
+          <div class="input-group">
+            <input type="text" maxlength="12" placeholder="Digite o telefone" name="phone" mask="(NN)NNNNN-NNNN"
+              formControlName="phone" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name">Cliente</label>
+          <input type="text" name="name" placeholder="Digite o nome" formControlName="name" class="form-control">
+          <span class="invalid" *ngIf="form.controls.name.invalid && form.controls.name.dirty">Preenchimento
+            obrigatório</span>
+        </div>
+      </div>
     </div>
+
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <th>Produto</th>
+          <th>Preço</th>
+          <th>Quantidade</th>
+          <th>Data</th>
+          <th>Total</th>
+          <th>
+            <a class="btn btn-sm btn-success text-white" (click)="addItem()"><i class="fa fa-plus"></i>
+              Adicionar Item</a>
+          </th>
+        </thead>
+        <tbody>
+          <p *ngIf="!(orderItems && orderItems.length)">Nenhum pedido em aberto.</p>
+          <tr *ngFor="let orderItem of orderItems">
+            <td> {{ orderItem.productName }} </td>
+            <td> {{ orderItem.price }}</td>
+            <td> {{ orderItem.quantity }}</td>
+            <td> {{ orderItem.date | date: "dd/MM/yyyy" }} </td>
+            <td> {{ orderItem.total }}</td>
+            <td>
+              <a class="btn btn-sm btn-info text-white" (click)="updateItem(orderItem)"><i
+                  class="fas fa-pen-alt"></i></a>
+              <a class="btn btn-sm btn-danger text-white ml-1" (click)="delete(orderItem)"><i
+                  class="far fa-trash-alt"></i></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+
+    <div class="row">
+      <div class="col-md-8">
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!form.controls.name.valid">
+            Salvar</button>
+          <button type="button" class="btn btn-danger ml-1" [routerLink]="['/client']">Fechar</button>
+        </div>
+      </div>
+      <div *ngIf="(partial != null)" class="col-md-2">
+        <div class="form-group">
+          <label>Valor Pago</label>
+          <div class="input-group total">
+            <div class="input-group-prepend">
+              <div type="number"> R$&nbsp;</div>
+            </div>
+            <div>
+              <label> {{ partial }} </label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="(total !=0)" class="col-md-2">
+        <div class="form-group">
+          <label>Total</label>
+          <div class="input-group total">
+            <div class="input-group-prepend">
+              <div type="number"> R$&nbsp;</div>
+            </div>
+            <div>
+              <label> {{ getTotal() }} </label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
 </div>

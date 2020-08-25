@@ -1,24 +1,27 @@
-<button class="btn btn-dark button" (click)="modalAddClient()">Novo cliente</button>
+<button class="btn btn-sm btn-success text-white button" (click)="modalAddClient()"><i class="fa fa-plus"></i>
+  Novo cliente</button>
 <p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
 
-<table class="table" *ngIf="(clients && clients.length)">
-  <thead>
-    <tr>
-      <th scope="col">Telefone</th>
-      <th scope="col">Nome</th>
-      <th scope="col">Total</th>
-      <th scope="col">Opção</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let client of clients">
-      <th scope="row"> {{client.cellPhone}} </th>
-      <td>{{client.name}}</td>
-      <td>0</td>
-      <td><button class="btn btn-sm btn-success text-white" [routerLink]='["/client/client-edit/" + client.user]'><i
-            class="fas fa-pen-alt"></i></button>
-        <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i
-            class="far fa-trash-alt"></i></button></td>
-    </tr>
-  </tbody>
-</table>
+<div class="table-responsive">
+  <table class="table" *ngIf="(clients && clients.length)">
+    <thead>
+      <tr>
+        <th scope="col">Telefone</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Total</th>
+        <th scope="col">Opção</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <th scope="row"> {{client.cellPhone}} </th>
+        <td>{{client.name}}</td>
+        <td>0</td>
+        <td><button class="btn btn-sm btn-success text-white" [routerLink]='["/client/client-edit/" + client.user]'><i
+              class="fas fa-pen-alt"></i></button>
+          <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i
+              class="far fa-trash-alt"></i></button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -62,17 +62,17 @@ export class ModalClientComponent implements OnInit {
       });
   }
 
-  // saveWithRequests() {
-  //   this.fillClient();
-  //   this.clientService.createClient(this.client).subscribe(
-  //     response => {
-  //       this.closeModal();
-  //       this.onsaveSucess(response.idClient);
-  //     },
-  //     error => {
-  //       console.error(error);
-  //     });
-  // }
+  saveWithRequests() {
+    this.fillClient();
+    this.clientService.createClient(this.client).subscribe(
+      (response: any) => {
+        this.closeModal();
+        this.onsaveSucess(response.id);
+      },
+      error => {
+        console.error(error);
+      });
+  }
 
   onsaveSucess(id: number) {
     this.router.navigate(['client/client-edit/' + id]);
