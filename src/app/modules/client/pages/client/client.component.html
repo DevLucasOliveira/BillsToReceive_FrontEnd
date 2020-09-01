@@ -1,6 +1,6 @@
 <button class="btn btn-sm btn-success text-white button" (click)="modalAddClient()"><i class="fa fa-plus"></i>
   Novo cliente</button>
-<p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
+<p *ngIf="!(clients && clients.length)">Não existe nenhum cliente com conta aberta</p>
 
 <div class="table-responsive">
   <table class="table" *ngIf="(clients && clients.length)">
@@ -17,7 +17,7 @@
         <th scope="row"> {{client.cellPhone}} </th>
         <td>{{client.name}}</td>
         <td>0</td>
-        <td><button class="btn btn-sm btn-success text-white" [routerLink]='["/client/client-edit/" + client.user]'><i
+        <td><button class="btn btn-sm btn-success text-white" [routerLink]='["/client/client-edit/" + client.id]'><i
               class="fas fa-pen-alt"></i></button>
           <button class="btn btn-sm btn-danger text-white ml-1" (click)="delete(client)"><i
               class="far fa-trash-alt"></i></button></td>

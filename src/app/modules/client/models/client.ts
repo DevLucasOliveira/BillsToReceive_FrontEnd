@@ -1,4 +1,5 @@
-import { Order } from './../../../shared/models/order';
+import { Order } from './order';
+
 export class Client {
 
   constructor(user: string, name: string, cellPhone: string) {
