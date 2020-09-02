@@ -2,11 +2,10 @@ import { ModalPagarComponent } from '../../components/modal-pagar/modal-pagar.co
 import { ModalItemComponent } from '../../components/modal-item/modal-item.component';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { OrderItem, Order } from '@shared/models';
 import { OrderItemService } from '@shared/providers/order-item.service';
-import { OrderService } from '@shared/providers/order.service';
 import { Client } from '../../models/client';
 import { ClientService } from '../../services/client.service';
 
@@ -31,33 +30,34 @@ export class OrderComponent implements OnInit {
     private orderItemService: OrderItemService,
     private activatedRoute: ActivatedRoute,
     private modalService: NgbModal,
-    private clientService: ClientService,
-    private orderService: OrderService) { }
+    private clientService: ClientService) { }
 
 
   ngOnInit() {
+    this.getIdClient();
     this.buildForm();
-    this.getClient();
   }
 
-  getClient() {
+  getIdClient() {
     this.activatedRoute.params.subscribe(
       params => {
         if (params.id === undefined) {
+          // Remover essa validação e colocar em um can activate
           return;
         }
-        this.clientService.getOneClient(params.id).subscribe(
-          response => {
+        this.getClient(params.id);
+      });
+  }
 
-            this.loadForm(response);
-            this.client = response;
-            if (params.id) {
-              this.loadPage();
-            }
-          },
-          error => {
-            console.error(error);
-          });
+  getClient(id) {
+    this.clientService.getClientById(id).subscribe(
+      (response: any) => {
+        this.client = response;
+        this.loadForm(this.client);
+        //this.loadPage();
+      },
+      (err) => {
+        console.error(err);
       });
   }
 
@@ -117,7 +117,7 @@ export class OrderComponent implements OnInit {
     modalRef.componentInstance.order = this.client.orders[0];
     modalRef.result.then(
       result => {
-        this.loadPage();
+        //this.loadPage();
       });
   }
 
@@ -145,23 +145,7 @@ export class OrderComponent implements OnInit {
     //     return this.order.items.reduce((sum, current) => sum + current.total, 0);
   }
 
-  buyPartial() {
-    const modalRef = this.modalService.open(ModalPagarComponent);
-    modalRef.componentInstance.partial;
-    modalRef.result.then(
-      result => {
-        debugger;
-        if (this.partial == null) {
-          this.partial = result;
-        } else {
-          this.partial += result;
-        }
-      },
-      error => {
-        console.error(error);
-      }
-    )
-  }
+
 
 }
 
