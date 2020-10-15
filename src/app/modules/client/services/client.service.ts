@@ -45,8 +45,8 @@ export class ClientService {
     return this.http.delete(`${this.url}/v1/clients/` + clientId);
   }
 
-  getClientById(clientId: string){
-    return this.http.get(`${this.url}/v1/clients/get/` +clientId);
+  getClientById(idClient: string) {
+    return this.http.get(`${this.url}/v1/clients/get/` + idClient);
   }
 
 

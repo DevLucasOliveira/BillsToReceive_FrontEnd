@@ -1,6 +1,6 @@
 <button class="btn btn-sm btn-success text-white button" (click)="modalAddClient()"><i class="fa fa-plus"></i>
   Novo cliente</button>
-<p *ngIf="!(clients && clients.length)">Não existe conta aberta</p>
+<p *ngIf="!(clients && clients.length)">Não existe nenhum cliente com conta aberta</p>
 
 <div class="table-responsive">
   <table class="table" *ngIf="(clients && clients.length)">
