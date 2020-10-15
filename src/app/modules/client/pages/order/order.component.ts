@@ -46,9 +46,8 @@ export class OrderComponent implements OnInit {
         if (params.id === undefined) {
           return;
         }
-        this.clientService.getOneClient(params.id).subscribe(
-          response => {
-
+        this.clientService.getClientById(params.id).subscribe(
+          (response: any) => {
             this.loadForm(response);
             this.client = response;
             if (params.id) {
@@ -102,13 +101,13 @@ export class OrderComponent implements OnInit {
 
 
   loadPage() {
-    this.orderItemService.getOrderByOrders(this.client.orders[0].idOrder).subscribe(
-      response => {
-        this.orderItems = response;
-      },
-      error => {
-        console.error(error);
-      });
+    // this.orderItemService.getOrderByOrders(this.client.orders[0].idOrder).subscribe(
+    //   response => {
+    //     this.orderItems = response;
+    //   },
+    //   error => {
+    //     console.error(error);
+    //   });
   }
 
 
